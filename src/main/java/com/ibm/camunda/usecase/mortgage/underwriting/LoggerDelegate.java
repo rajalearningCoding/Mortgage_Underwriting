@@ -29,7 +29,7 @@ public class LoggerDelegate implements JavaDelegate {
             + ", variables=" + execution.getVariables()
             + " \n\n");
     //V1.1 starts
-    LOGGER.info("\n\n changed by liya for git trial");
+    LOGGER.info("\n\n changed by liya for git trial 1");
     //V1.1 Ends
     
   }
