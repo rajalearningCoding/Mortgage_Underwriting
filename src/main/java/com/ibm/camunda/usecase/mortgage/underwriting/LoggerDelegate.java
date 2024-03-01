@@ -28,6 +28,9 @@ public class LoggerDelegate implements JavaDelegate {
             + ", variables=" + execution.getVariables()
             + " \n\n");
     
+    
+    
+    LOGGER.info("Priyotosh");
   }
 
 }
