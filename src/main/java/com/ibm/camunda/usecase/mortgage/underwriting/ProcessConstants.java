@@ -4,6 +4,6 @@ public class ProcessConstants {
 
   public static final String PROCESS_DEFINITION_KEY = "Mortgage_Underwriting"; // BPMN Process ID
   
-  public static final String PROCESS_NAME="To be updated";
+  public static final String PROCESS_NAME="To be updated1";
 
 }
