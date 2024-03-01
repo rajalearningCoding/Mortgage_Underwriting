@@ -35,6 +35,8 @@ public class LoggerDelegate implements JavaDelegate {
     
     
     LOGGER.info("Priyotosh Roy12345678");
+    LOGGER.info("raja 2nd code");
+
   }
 
 }
