@@ -27,7 +27,7 @@ public class LoggerDelegate implements JavaDelegate {
             + ", executionId=" + execution.getId()
             + ", variables=" + execution.getVariables()
             + " \n\n");
-    
+    LOGGER.info("Raja");
   }
 
 }
