@@ -30,7 +30,7 @@ public class LoggerDelegate implements JavaDelegate {
     
     
     
-    LOGGER.info("Priyotosh Roy");
+    LOGGER.info("Priyotosh ");
   }
 
 }
