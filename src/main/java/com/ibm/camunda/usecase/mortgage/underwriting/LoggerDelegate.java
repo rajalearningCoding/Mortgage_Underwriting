@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
  * illustrating how a Java Delegate can be used
  * from within a BPMN 2.0 Service Task.
  */
+//V1.1 Added by Liya for camunda assessment on 1/3/2024
 @Component("logger")
 public class LoggerDelegate implements JavaDelegate {
  
@@ -27,7 +28,10 @@ public class LoggerDelegate implements JavaDelegate {
             + ", executionId=" + execution.getId()
             + ", variables=" + execution.getVariables()
             + " \n\n");
-    LOGGER.info("Raja");
+    //V1.1 starts
+    LOGGER.info("\n\n changed by liya for git trial 1");
+    //V1.1 Ends
+    
   }
 
 }
