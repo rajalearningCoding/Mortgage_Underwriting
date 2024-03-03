@@ -1,4 +1,4 @@
-package com.ibm.camunda.usecase.mortgage.underwriting;
+package com.ibm.camunda.usecase.mortgage.underwriting.delegate;
 
 import java.util.logging.Logger;
 
