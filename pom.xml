@@ -129,7 +129,12 @@
       <version>2.1.0</version>
       <scope>test</scope>
     </dependency>
-
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.30</version>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>org.camunda.bpm.extension</groupId>
       <artifactId>camunda-bpm-assert-scenario</artifactId>
