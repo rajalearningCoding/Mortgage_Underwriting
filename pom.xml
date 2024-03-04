@@ -58,7 +58,7 @@
       -->
     </dependency>
     <!-- added by liya for testing db connection -->
-	<!--  <dependency>
+	<dependency>
     	<groupId>org.springframework.boot</groupId>
     	<artifactId>spring-boot-devtools</artifactId>
     	<scope>runtime</scope>
@@ -67,16 +67,11 @@
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
  	</dependency>
- 	
- 	
-        <dependency>
+    <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
 
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-envers</artifactId>
-        </dependency>-->
 	<!-- for testing db connection -->
 
     <dependency>
