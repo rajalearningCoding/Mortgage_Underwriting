@@ -3,6 +3,7 @@
  */
 package com.ibm.camunda.usecase.mortgage.underwriting.model;
 
+import java.util.Date;
 
 //import jakarta.persistence.*;
 /**
@@ -20,7 +21,7 @@ public class Personal {
 	public Integer caseNo;
 	public String borrowerType;
 	public String name;
-	public String dob;
+	public Date dob;
 	public String pan;
 	//@Embedded
 	public ContactInfo contDetails;
@@ -43,7 +44,7 @@ public class Personal {
 	 * @param finDet
 	 * @param credDet
 	 */
-	public Personal(Integer caseNo, String borrowerType, String name, String dob, String pan, ContactInfo contDetails,
+	public Personal(Integer caseNo, String borrowerType, String name, Date dob, String pan, ContactInfo contDetails,
 			EmpHistory empHist, FinanceInfo finDet, CredHistory credDet) {
 		super();
 		this.caseNo = caseNo;
@@ -109,7 +110,7 @@ public class Personal {
 	/**
 	 * @return the dob
 	 */
-	public String getDob() {
+	public Date getDob() {
 		return dob;
 	}
 
@@ -117,7 +118,7 @@ public class Personal {
 	/**
 	 * @param dob the dob to set
 	 */
-	public void setDob(String dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
 

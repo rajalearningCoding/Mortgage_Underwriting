@@ -18,32 +18,6 @@ public class FinanceInfo {
 	public String assets;
 	public String liabilities;
 	public long debts;
-	//public String pan;
-	/**
-	 * @param assets
-	 * @param liabilities
-	 * @param debts
-	 * @param pan
-	 */
-	/*public FinanceInfo(String assets, String liabilities, long debts, String pan) {
-		super();
-		this.assets = assets;
-		this.liabilities = liabilities;
-		this.debts = debts;
-		this.pan = pan;
-	}
-	/**
-	 * @return the pan
-	 */
-	/*public String getPan() {
-		return pan;
-	}
-	/**
-	 * @param pan the pan to set
-	 */
-	/*public void setPan(String pan) {
-		this.pan = pan;
-	}
 	/**
 	 * @param assets
 	 * @param liabilities

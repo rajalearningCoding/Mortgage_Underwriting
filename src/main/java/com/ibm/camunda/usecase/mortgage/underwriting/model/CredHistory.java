@@ -17,30 +17,6 @@ public class CredHistory {
 	 */
 	public long credScore;
 	public String credReport;
-	//public String pan;
-	/**
-	 * @param credScore
-	 * @param credReport
-	 * @param pan
-	 */
-	/*public CredHistory(long credScore, String credReport, String pan) {
-		super();
-		this.credScore = credScore;
-		this.credReport = credReport;
-		this.pan = pan;
-	}
-	/**
-	 * @return the pan
-	 */
-	/*public String getPan() {
-		return pan;
-	}
-	/**
-	 * @param pan the pan to set
-	 */
-	/*public void setPan(String pan) {
-		this.pan = pan;
-	}
 	/**
 	 * @param credScore
 	 * @param credReport

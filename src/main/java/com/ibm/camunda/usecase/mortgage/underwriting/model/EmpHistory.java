@@ -82,34 +82,6 @@ public class EmpHistory {
 	public Date empStartDate;
 	public Date empEndDate;
 	public long income;
-	//public String pan;
-	/**
-	 * @param employerName
-	 * @param empStartDate
-	 * @param empEndDate
-	 * @param income
-	 * @param pan
-	 */
-	/*public EmpHistory(String employerName, Date empStartDate, Date empEndDate, long income, String pan) {
-		super();
-		this.employerName = employerName;
-		this.empStartDate = empStartDate;
-		this.empEndDate = empEndDate;
-		this.income = income;
-		this.pan = pan;
-	}
-	/**
-	 * @return the pan
-	 */
-	/*public String getPan() {
-		return pan;
-	}
-	/**
-	 * @param pan the pan to set
-	 */
-	/*public void setPan(String pan) {
-		this.pan = pan;
-	}*/
 	public EmpHistory() {
 		// TODO Auto-generated constructor stub
 	}
