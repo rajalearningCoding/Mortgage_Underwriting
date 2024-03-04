@@ -17,6 +17,7 @@ public class Address {
 	private String state;
 	private String city;
 	private int pin;
+	private String address1;
 	/**
 	 * @param address2
 	 * @param country
@@ -34,7 +35,7 @@ public class Address {
 		this.pin = pin;
 		this.address1 = address1;
 	}
-	private String address1;
+	
 	public String getAddress1() {
 		return address1;
 	}

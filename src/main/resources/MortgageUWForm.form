@@ -1,0 +1,514 @@
+{
+  "components": [
+    {
+      "label": "",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1isx7tb",
+        "columns": null
+      },
+      "id": "Field_0hbone1",
+      "key": "textfield_7nrazg",
+      "properties": {
+        "readonly": "true"
+      },
+      "defaultValue": "Personal Details"
+    },
+    {
+      "label": "Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1mthvxl",
+        "columns": null
+      },
+      "id": "Field_1p4lkoj",
+      "key": "name"
+    },
+    {
+      "label": "Date of Birth",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1mthvxl",
+        "columns": null
+      },
+      "id": "Field_1incyf0",
+      "key": "dob"
+    },
+    {
+      "label": "Pan No",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1mthvxl",
+        "columns": null
+      },
+      "id": "Field_08asq52",
+      "key": "pan"
+    },
+    {
+      "label": "",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_137sjbz",
+        "columns": null
+      },
+      "id": "Field_1oevzk7",
+      "key": "textfield_6m6okc",
+      "defaultValue": "Contact Details",
+      "properties": {
+        "readonly": "readonly"
+      }
+    },
+    {
+      "label": "Adress 1",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0gdfmel",
+        "columns": null
+      },
+      "id": "Field_1pckjka",
+      "key": "address1"
+    },
+    {
+      "label": "Address 2",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0gdfmel",
+        "columns": null
+      },
+      "id": "Field_19siors",
+      "key": "address2"
+    },
+    {
+      "label": "City",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1qbnm1m",
+        "columns": null
+      },
+      "id": "Field_0uzqqiu",
+      "key": "city"
+    },
+    {
+      "label": "State",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1qbnm1m",
+        "columns": null
+      },
+      "id": "Field_0fpu199",
+      "key": "state"
+    },
+    {
+      "label": "Country",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1qbnm1m",
+        "columns": null
+      },
+      "id": "Field_12hgku3",
+      "key": "country"
+    },
+    {
+      "label": "Pin",
+      "type": "number",
+      "layout": {
+        "row": "Row_1e7bglh",
+        "columns": null
+      },
+      "id": "Field_02gqrta",
+      "key": "pin"
+    },
+    {
+      "label": "Phone Number",
+      "type": "number",
+      "layout": {
+        "row": "Row_1e7bglh",
+        "columns": null
+      },
+      "id": "Field_18gsi2n",
+      "key": "phoneNumber"
+    },
+    {
+      "label": "Email",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1e7bglh",
+        "columns": null
+      },
+      "id": "Field_0hf1z55",
+      "key": "email"
+    },
+    {
+      "label": "",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_08yscje",
+        "columns": null
+      },
+      "id": "Field_1l5mfw9",
+      "key": "textfield_p3plpb",
+      "properties": {
+        "readonly": "readonly"
+      },
+      "defaultValue": "Employment History"
+    },
+    {
+      "label": "Employer Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1u5xesq",
+        "columns": null
+      },
+      "id": "Field_09lds7g",
+      "key": "employerName"
+    },
+    {
+      "label": "Employment Start",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1u5xesq",
+        "columns": null
+      },
+      "id": "Field_10w6pne",
+      "key": "empStartDate"
+    },
+    {
+      "label": "Employment End",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1u5xesq",
+        "columns": null
+      },
+      "id": "Field_1xmim2p",
+      "key": "empEndDate"
+    },
+    {
+      "label": "Income",
+      "type": "number",
+      "layout": {
+        "row": "Row_1u5xesq",
+        "columns": null
+      },
+      "id": "Field_1y2erur",
+      "key": "income"
+    },
+    {
+      "label": "",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1o1pnl6",
+        "columns": null
+      },
+      "id": "Field_18mkwvc",
+      "key": "textfield_0mca7q",
+      "defaultValue": "Financial Details",
+      "properties": {
+        "readonly": "readonly"
+      }
+    },
+    {
+      "label": "Liabilities",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0mw7n2m",
+        "columns": null
+      },
+      "id": "Field_0hag07w",
+      "key": "liabilities"
+    },
+    {
+      "label": "Assets",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0mw7n2m",
+        "columns": null
+      },
+      "id": "Field_0rj8orb",
+      "key": "assets"
+    },
+    {
+      "label": "Debts",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0mw7n2m",
+        "columns": null
+      },
+      "id": "Field_0v4aq5s",
+      "key": "debt"
+    },
+    {
+      "label": "",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0x5hs7w",
+        "columns": null
+      },
+      "id": "Field_09ptw8y",
+      "key": "textfield_19ouub",
+      "defaultValue": "Credit History",
+      "properties": {
+        "readonly": "readonly"
+      }
+    },
+    {
+      "label": "Credit Score",
+      "type": "number",
+      "layout": {
+        "row": "Row_0l8387o",
+        "columns": null
+      },
+      "id": "Field_0t1sxph",
+      "key": "credScore"
+    },
+    {
+      "label": "Credit Report",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0l8387o",
+        "columns": null
+      },
+      "id": "Field_0dk2ogv",
+      "key": "credReport"
+    },
+    {
+      "label": "",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0qn9kit",
+        "columns": null
+      },
+      "id": "Field_1wduvyn",
+      "key": "textfield_vpwodb",
+      "defaultValue": "Property Information"
+    },
+    {
+      "label": "Property Address",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1bzliul",
+        "columns": null
+      },
+      "id": "Field_0bdsqo2",
+      "key": "propAddress"
+    },
+    {
+      "label": "Property Value",
+      "type": "number",
+      "layout": {
+        "row": "Row_1mborge",
+        "columns": null
+      },
+      "id": "Field_1htx0l5",
+      "key": "propValue"
+    },
+    {
+      "values": [
+        {
+          "label": "Value",
+          "value": "value"
+        }
+      ],
+      "label": "Property Type",
+      "type": "select",
+      "layout": {
+        "row": "Row_1mborge",
+        "columns": null
+      },
+      "id": "Field_0y992oh",
+      "key": "propType"
+    },
+    {
+      "label": "Property Area",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1mborge",
+        "columns": null
+      },
+      "id": "Field_1vivjb0",
+      "key": "sqft"
+    },
+    {
+      "label": "No of Bedrooms",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1ddahrx",
+        "columns": null
+      },
+      "id": "Field_1caqjnb",
+      "key": "nBed"
+    },
+    {
+      "label": "No of Bathrooms",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1ddahrx",
+        "columns": null
+      },
+      "id": "Field_18w4uwj",
+      "key": "nBath"
+    },
+    {
+      "label": "Lot Size",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1ddahrx",
+        "columns": null
+      },
+      "id": "Field_1ufl9ul",
+      "key": "lotSize"
+    },
+    {
+      "label": "",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1nq1z8b",
+        "columns": null
+      },
+      "id": "Field_1vabu0b",
+      "key": "textfield_pisfqp",
+      "defaultValue": "Loan Details"
+    },
+    {
+      "label": "Loan Amount",
+      "type": "number",
+      "layout": {
+        "row": "Row_0epmbc2",
+        "columns": null
+      },
+      "id": "Field_0bhm15l",
+      "key": "loanAmount"
+    },
+    {
+      "label": "Loan Term",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0epmbc2",
+        "columns": null
+      },
+      "id": "Field_1b55w6e",
+      "key": "loanTerm"
+    },
+    {
+      "label": "Interest Rate",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0epmbc2",
+        "columns": null
+      },
+      "id": "Field_141o3hi",
+      "key": "iRate"
+    },
+    {
+      "label": "Down Payment Amount",
+      "type": "number",
+      "layout": {
+        "row": "Row_1t8zlfk",
+        "columns": null
+      },
+      "id": "Field_1an91xg",
+      "key": "dPay"
+    },
+    {
+      "values": [
+        {
+          "label": "Value",
+          "value": "value"
+        }
+      ],
+      "label": "Loan Purpose",
+      "type": "select",
+      "layout": {
+        "row": "Row_1t8zlfk",
+        "columns": null
+      },
+      "id": "Field_07iluap",
+      "key": "loanPurp"
+    },
+    {
+      "values": [
+        {
+          "label": "Value",
+          "value": "value"
+        }
+      ],
+      "label": "Loan Programme",
+      "type": "select",
+      "layout": {
+        "row": "Row_1t8zlfk",
+        "columns": null
+      },
+      "id": "Field_09qzj34",
+      "key": "loanPrg"
+    },
+    {
+      "label": "",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1agh665",
+        "columns": null
+      },
+      "id": "Field_1w7h2jc",
+      "key": "textfield_87wvge",
+      "defaultValue": "Credit Risk Assessment"
+    },
+    {
+      "label": "Credit Score",
+      "type": "number",
+      "layout": {
+        "row": "Row_1fjhhvi",
+        "columns": null
+      },
+      "id": "Field_1sdczrr",
+      "key": "creditScore"
+    },
+    {
+      "label": "Debt-to-Income-Ratio",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1fjhhvi",
+        "columns": null
+      },
+      "id": "Field_0n5vf89",
+      "key": "dti"
+    },
+    {
+      "label": "Loan-to-Value-Ratio",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1fjhhvi",
+        "columns": null
+      },
+      "id": "Field_1ajxpt2",
+      "key": "ltv"
+    },
+    {
+      "label": "Employment Stability",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0awf32c",
+        "columns": null
+      },
+      "id": "Field_145aaij",
+      "key": "empStability"
+    },
+    {
+      "label": "Payment History",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0awf32c",
+        "columns": null
+      },
+      "id": "Field_1dd7vww",
+      "key": "payHist"
+    }
+  ],
+  "type": "default",
+  "id": "Form_UW",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.19.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.20.0",
+  "schemaVersion": 14
+}
