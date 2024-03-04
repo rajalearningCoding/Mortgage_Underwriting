@@ -97,7 +97,7 @@ org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1309)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1298)
-	at com.ibm.camunda.usecase.mortgage.underwriting.CamundaApplication.main(CamundaApplication.java:12)
+	at com.ibm.camunda.usecase.mortgage.underwriting.Services.CamundaApplication.main(CamundaApplication.java:12)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/002V33744/Documents/Personal/BPM/CamundaUseCase/Mortgage_Underwriting/camunda-db.mv.db [2.1.214/7]" [50000-214]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:554)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
@@ -186,7 +186,7 @@ org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1309)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1298)
-	at com.ibm.camunda.usecase.mortgage.underwriting.CamundaApplication.main(CamundaApplication.java:12)
+	at com.ibm.camunda.usecase.mortgage.underwriting.Services.CamundaApplication.main(CamundaApplication.java:12)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/002V33744/Documents/Personal/BPM/CamundaUseCase/Mortgage_Underwriting/camunda-db.mv.db [2.1.214/7]" [50000-214]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:554)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)

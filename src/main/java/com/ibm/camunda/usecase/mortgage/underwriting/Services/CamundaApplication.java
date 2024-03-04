@@ -1,4 +1,4 @@
-package com.ibm.camunda.usecase.mortgage.underwriting;
+package com.ibm.camunda.usecase.mortgage.underwriting.Services;
 
 import org.camunda.bpm.spring.boot.starter.annotation.EnableProcessApplication;
 import org.springframework.boot.SpringApplication;
