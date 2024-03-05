@@ -4,14 +4,14 @@
     <bpmn:startEvent id="StartEvent_StartMortgageUnderwritingFromtasklist" name="Mortgage Underwriting Process Started">
       <bpmn:outgoing>Flow_0canc6n</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="Flow_0canc6n" sourceRef="StartEvent_StartMortgageUnderwritingFromtasklist" targetRef="Activity_EnterApplicationDetails" />
-    <bpmn:sequenceFlow id="Flow_1taaeu6" sourceRef="Activity_EnterApplicationDetails" targetRef="Activity_CheckDuplicate" />
-    <bpmn:startEvent id="EventStart_MortgageProcessFromMesssage" name="Create Process from Message">
+    <bpmn:sequenceFlow id="Flow_0canc6n" sourceRef="StartEvent_StartMortgageUnderwritingFromtasklist" targetRef="Activity_EnteredApplicationDetails" />
+    <bpmn:sequenceFlow id="Flow_1taaeu6" sourceRef="Activity_EnteredApplicationDetails" targetRef="Activity_CheckedDuplicate" />
+    <bpmn:startEvent id="EventStart_MortgageProcessFromMesssage" name="Created Process from Message">
       <bpmn:outgoing>Flow_0bksqjb</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0ra1c86" messageRef="Message_0j867j8" />
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="Flow_0bksqjb" sourceRef="EventStart_MortgageProcessFromMesssage" targetRef="Activity_EnterApplicationDetails" />
-    <bpmn:manualTask id="Activity_CheckDuplicate" name="Check Duplicate">
+    <bpmn:sequenceFlow id="Flow_0bksqjb" sourceRef="EventStart_MortgageProcessFromMesssage" targetRef="Activity_EnteredApplicationDetails" />
+    <bpmn:manualTask id="Activity_CheckedDuplicate" name="Checked Duplicate">
       <bpmn:incoming>Flow_1taaeu6</bpmn:incoming>
       <bpmn:outgoing>Flow_1g4dehs</bpmn:outgoing>
     </bpmn:manualTask>
@@ -20,55 +20,55 @@
       <bpmn:outgoing>Flow_12tyw9v</bpmn:outgoing>
       <bpmn:outgoing>Flow_006n6tl</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_1g4dehs" sourceRef="Activity_CheckDuplicate" targetRef="Gateway_isDuplicate" />
-    <bpmn:task id="Activity_Sa" name="Send/Save Detail in system for duplicate">
+    <bpmn:sequenceFlow id="Flow_1g4dehs" sourceRef="Activity_CheckedDuplicate" targetRef="Gateway_isDuplicate" />
+    <bpmn:task id="Activity_SaveDetailForDuplicate" name="Send/Save Detail in system for duplicate">
       <bpmn:incoming>Flow_12tyw9v</bpmn:incoming>
       <bpmn:outgoing>Flow_1hx4kjj</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:sequenceFlow id="Flow_12tyw9v" name="Duplicate case" sourceRef="Gateway_isDuplicate" targetRef="Activity_Sa">
+    <bpmn:sequenceFlow id="Flow_12tyw9v" name="Duplicate case" sourceRef="Gateway_isDuplicate" targetRef="Activity_SaveDetailForDuplicate">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">isDuplicate==true</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:endEvent id="Event_DuplicateCaseEnd" name="Duplicate case end">
+    <bpmn:endEvent id="Event_DuplicateCaseEnd" name="Duplicate Case End">
       <bpmn:incoming>Flow_1hx4kjj</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_1hx4kjj" sourceRef="Activity_Sa" targetRef="Event_DuplicateCaseEnd" />
+    <bpmn:sequenceFlow id="Flow_1hx4kjj" sourceRef="Activity_SaveDetailForDuplicate" targetRef="Event_DuplicateCaseEnd" />
     <bpmn:subProcess id="Activity_1aam2do" name="Pulling data from internal / external systems">
       <bpmn:incoming>Flow_0afiaw6</bpmn:incoming>
       <bpmn:outgoing>Flow_0sfjiya</bpmn:outgoing>
       <bpmn:startEvent id="Event_PullingDataStarted">
         <bpmn:outgoing>Flow_0e5tnir</bpmn:outgoing>
       </bpmn:startEvent>
-      <bpmn:sequenceFlow id="Flow_0e5tnir" sourceRef="Event_PullingDataStarted" targetRef="Gateway_DivergingAllRequests" />
-      <bpmn:parallelGateway id="Gateway_DivergingAllRequests">
+      <bpmn:sequenceFlow id="Flow_0e5tnir" sourceRef="Event_PullingDataStarted" targetRef="Gateway_DivergedAllRequests" />
+      <bpmn:parallelGateway id="Gateway_DivergedAllRequests">
         <bpmn:incoming>Flow_0e5tnir</bpmn:incoming>
         <bpmn:outgoing>Flow_08xt3wj</bpmn:outgoing>
         <bpmn:outgoing>Flow_025nm76</bpmn:outgoing>
         <bpmn:outgoing>Flow_0g9881e</bpmn:outgoing>
         <bpmn:outgoing>Flow_19jy3gb</bpmn:outgoing>
       </bpmn:parallelGateway>
-      <bpmn:sequenceFlow id="Flow_08xt3wj" sourceRef="Gateway_DivergingAllRequests" targetRef="Activity_FloodZoneDetermination" />
-      <bpmn:sequenceFlow id="Flow_025nm76" sourceRef="Gateway_DivergingAllRequests" targetRef="Activity_PropertyAppraisal" />
-      <bpmn:sequenceFlow id="Flow_0g9881e" sourceRef="Gateway_DivergingAllRequests" targetRef="Activity_CreditReports" />
-      <bpmn:sequenceFlow id="Flow_19jy3gb" sourceRef="Gateway_DivergingAllRequests" targetRef="Activity_TitleReports" />
-      <bpmn:sequenceFlow id="Flow_0wdhj3n" sourceRef="Activity_FloodZoneDetermination" targetRef="Gateway_ConvergingAllRequests" />
+      <bpmn:sequenceFlow id="Flow_08xt3wj" sourceRef="Gateway_DivergedAllRequests" targetRef="Activity_FloodZoneDetermined" />
+      <bpmn:sequenceFlow id="Flow_025nm76" sourceRef="Gateway_DivergedAllRequests" targetRef="Activity_PropertyAppraisal" />
+      <bpmn:sequenceFlow id="Flow_0g9881e" sourceRef="Gateway_DivergedAllRequests" targetRef="Activity_CreditReports" />
+      <bpmn:sequenceFlow id="Flow_19jy3gb" sourceRef="Gateway_DivergedAllRequests" targetRef="Activity_TitleReports" />
+      <bpmn:sequenceFlow id="Flow_0wdhj3n" sourceRef="Activity_FloodZoneDetermined" targetRef="Gateway_ConvergedAllRequests" />
       <bpmn:sequenceFlow id="Flow_194d6ys" sourceRef="Activity_CreditReports" targetRef="Event_WaitForCreditReport" />
       <bpmn:sequenceFlow id="Flow_0wfba62" sourceRef="Activity_PropertyAppraisal" targetRef="Event_AppraisalReports" />
       <bpmn:sequenceFlow id="Flow_17721uf" sourceRef="Activity_TitleReports" targetRef="Event_TitleReports" />
-      <bpmn:sequenceFlow id="Flow_1le63oe" sourceRef="Event_WaitForCreditReport" targetRef="Gateway_ConvergingAllRequests" />
-      <bpmn:parallelGateway id="Gateway_ConvergingAllRequests">
+      <bpmn:sequenceFlow id="Flow_1le63oe" sourceRef="Event_WaitForCreditReport" targetRef="Gateway_ConvergedAllRequests" />
+      <bpmn:parallelGateway id="Gateway_ConvergedAllRequests">
         <bpmn:incoming>Flow_1le63oe</bpmn:incoming>
         <bpmn:incoming>Flow_1u2kb1i</bpmn:incoming>
         <bpmn:incoming>Flow_04wady6</bpmn:incoming>
         <bpmn:incoming>Flow_0wdhj3n</bpmn:incoming>
         <bpmn:outgoing>Flow_19ztmbn</bpmn:outgoing>
       </bpmn:parallelGateway>
-      <bpmn:sequenceFlow id="Flow_1u2kb1i" sourceRef="Event_AppraisalReports" targetRef="Gateway_ConvergingAllRequests" />
-      <bpmn:sequenceFlow id="Flow_04wady6" sourceRef="Event_TitleReports" targetRef="Gateway_ConvergingAllRequests" />
+      <bpmn:sequenceFlow id="Flow_1u2kb1i" sourceRef="Event_AppraisalReports" targetRef="Gateway_ConvergedAllRequests" />
+      <bpmn:sequenceFlow id="Flow_04wady6" sourceRef="Event_TitleReports" targetRef="Gateway_ConvergedAllRequests" />
       <bpmn:endEvent id="Event_PullingDataEnded">
         <bpmn:incoming>Flow_19ztmbn</bpmn:incoming>
       </bpmn:endEvent>
-      <bpmn:sequenceFlow id="Flow_19ztmbn" sourceRef="Gateway_ConvergingAllRequests" targetRef="Event_PullingDataEnded" />
-      <bpmn:manualTask id="Activity_FloodZoneDetermination" name="Flood Zone Determination DMN based on pin no">
+      <bpmn:sequenceFlow id="Flow_19ztmbn" sourceRef="Gateway_ConvergedAllRequests" targetRef="Event_PullingDataEnded" />
+      <bpmn:manualTask id="Activity_FloodZoneDetermined" name="Flood Zone Determined DMN based on pin no">
         <bpmn:incoming>Flow_08xt3wj</bpmn:incoming>
         <bpmn:outgoing>Flow_0wdhj3n</bpmn:outgoing>
       </bpmn:manualTask>
@@ -109,26 +109,26 @@
       <bpmn:outgoing>Flow_0afiaw6</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_0afiaw6" sourceRef="Gateway_ReverificationRequested" targetRef="Activity_1aam2do" />
-    <bpmn:sequenceFlow id="Flow_0sfjiya" sourceRef="Activity_1aam2do" targetRef="Activity_DetermineMortgageScoreAndAmount" />
-    <bpmn:manualTask id="Activity_DetermineMortgageScoreAndAmount" name="Determine Mortgage score and amount">
+    <bpmn:sequenceFlow id="Flow_0sfjiya" sourceRef="Activity_1aam2do" targetRef="Activity_DeterminedMortgageScoreAndAmount" />
+    <bpmn:manualTask id="Activity_DeterminedMortgageScoreAndAmount" name="Determined Mortgage score and amount">
       <bpmn:incoming>Flow_0sfjiya</bpmn:incoming>
       <bpmn:outgoing>Flow_1xcqykb</bpmn:outgoing>
     </bpmn:manualTask>
-    <bpmn:sequenceFlow id="Flow_1xcqykb" sourceRef="Activity_DetermineMortgageScoreAndAmount" targetRef="Activity_FirstUnderWriter" />
+    <bpmn:sequenceFlow id="Flow_1xcqykb" sourceRef="Activity_DeterminedMortgageScoreAndAmount" targetRef="Activity_FirstUnderWriterMaker" />
     <bpmn:exclusiveGateway id="Gateway_FirstUWApproval" name="is first UW Approved">
       <bpmn:incoming>Flow_1gx3orv</bpmn:incoming>
       <bpmn:outgoing>Flow_0vanaxz</bpmn:outgoing>
       <bpmn:outgoing>Flow_1329rh7</bpmn:outgoing>
       <bpmn:outgoing>Flow_14aqhry</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_1gx3orv" sourceRef="Activity_FirstUnderWriter" targetRef="Gateway_FirstUWApproval" />
-    <bpmn:sequenceFlow id="Flow_0vanaxz" sourceRef="Gateway_FirstUWApproval" targetRef="Activity_FirstUnderwriterRejection">
+    <bpmn:sequenceFlow id="Flow_1gx3orv" sourceRef="Activity_FirstUnderWriterMaker" targetRef="Gateway_FirstUWApproval" />
+    <bpmn:sequenceFlow id="Flow_0vanaxz" sourceRef="Gateway_FirstUWApproval" targetRef="Activity_FirstUnderwriterRejected">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">isfirstUWApproved==false</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:endEvent id="Event_FirstUWRejected" name="First Underwriter Rejection End">
       <bpmn:incoming>Flow_14rmau3</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_14rmau3" sourceRef="Activity_FirstUnderwriterRejection" targetRef="Event_FirstUWRejected" />
+    <bpmn:sequenceFlow id="Flow_14rmau3" sourceRef="Activity_FirstUnderwriterRejected" targetRef="Event_FirstUWRejected" />
     <bpmn:sequenceFlow id="Flow_1329rh7" sourceRef="Gateway_FirstUWApproval" targetRef="Activity_SecondUnderWriterCheck">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">isfirstUWApproved==true</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -138,13 +138,13 @@
       <bpmn:outgoing>Flow_1hbyn26</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_1e78bn0" sourceRef="Activity_SecondUnderWriterCheck" targetRef="Gateway_SecondUWApproval" />
-    <bpmn:sequenceFlow id="Flow_1k404wx" sourceRef="Gateway_SecondUWApproval" targetRef="Activity_SecondUnderWriterReject">
+    <bpmn:sequenceFlow id="Flow_1k404wx" sourceRef="Gateway_SecondUWApproval" targetRef="Activity_SecondUnderWriterRejected">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">isSecondUWApproved==false</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:endEvent id="Event_SecondUWRejected" name="Second Underwriter Rejection End">
       <bpmn:incoming>Flow_1fab5rn</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_1fab5rn" sourceRef="Activity_SecondUnderWriterReject" targetRef="Event_SecondUWRejected" />
+    <bpmn:sequenceFlow id="Flow_1fab5rn" sourceRef="Activity_SecondUnderWriterRejected" targetRef="Event_SecondUWRejected" />
     <bpmn:sequenceFlow id="Flow_1hbyn26" sourceRef="Gateway_SecondUWApproval" targetRef="Activity_MortgagePayment">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">isSecondUWApproved==true</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -152,26 +152,26 @@
       <bpmn:incoming>Flow_0i8q12m</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0i8q12m" sourceRef="Activity_MortgagePayment" targetRef="EndEvent_EndMortgageProcess" />
-    <bpmn:manualTask id="Activity_MortgagePayment" name="Mortgage payment process">
+    <bpmn:manualTask id="Activity_MortgagePayment" name="Mortgage payment ">
       <bpmn:incoming>Flow_1hbyn26</bpmn:incoming>
       <bpmn:outgoing>Flow_0i8q12m</bpmn:outgoing>
     </bpmn:manualTask>
-    <bpmn:manualTask id="Activity_SecondUnderWriterReject" name="second Underwriter Rejection Case">
+    <bpmn:manualTask id="Activity_SecondUnderWriterRejected" name="Second Underwriter Rejected Case">
       <bpmn:incoming>Flow_1k404wx</bpmn:incoming>
       <bpmn:outgoing>Flow_1fab5rn</bpmn:outgoing>
     </bpmn:manualTask>
-    <bpmn:manualTask id="Activity_FirstUnderwriterRejection" name="First Underwriter Rejection Case">
+    <bpmn:manualTask id="Activity_FirstUnderwriterRejected" name="First Underwriter Rejected Case">
       <bpmn:incoming>Flow_0vanaxz</bpmn:incoming>
       <bpmn:outgoing>Flow_14rmau3</bpmn:outgoing>
     </bpmn:manualTask>
     <bpmn:sequenceFlow id="Flow_14aqhry" sourceRef="Gateway_FirstUWApproval" targetRef="Gateway_ReverificationRequested" />
-    <bpmn:userTask id="Activity_EnterApplicationDetails" name="Enter applicant details for Loan" camunda:formRef="" camunda:formRefBinding="latest">
+    <bpmn:userTask id="Activity_EnteredApplicationDetails" name="Entered applicant details for Loan" camunda:formRef="" camunda:formRefBinding="latest">
       <bpmn:extensionElements />
       <bpmn:incoming>Flow_0canc6n</bpmn:incoming>
       <bpmn:incoming>Flow_0bksqjb</bpmn:incoming>
       <bpmn:outgoing>Flow_1taaeu6</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_FirstUnderWriter" name="First Underwritter(Maker)">
+    <bpmn:userTask id="Activity_FirstUnderWriterMaker" name="First Underwritter(Maker)">
       <bpmn:incoming>Flow_1xcqykb</bpmn:incoming>
       <bpmn:outgoing>Flow_1gx3orv</bpmn:outgoing>
     </bpmn:userTask>
@@ -196,10 +196,10 @@
       <bpmndi:BPMNShape id="Event_0sfch5q_di" bpmnElement="EventStart_MortgageProcessFromMesssage">
         <dc:Bounds x="179" y="282" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="160" y="325" width="76" height="27" />
+          <dc:Bounds x="157" y="325" width="83" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1q7ly42_di" bpmnElement="Activity_CheckDuplicate">
+      <bpmndi:BPMNShape id="Activity_1q7ly42_di" bpmnElement="Activity_CheckedDuplicate">
         <dc:Bounds x="430" y="357" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
@@ -209,24 +209,15 @@
           <dc:Bounds x="592" y="429" width="61" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1cq7iv5_di" bpmnElement="Activity_Sa">
+      <bpmndi:BPMNShape id="Activity_1cq7iv5_di" bpmnElement="Activity_SaveDetailForDuplicate">
         <dc:Bounds x="570" y="250" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1v5d9ba_di" bpmnElement="Event_DuplicateCaseEnd">
         <dc:Bounds x="602" y="172" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="583" y="135" width="73" height="27" />
+          <dc:Bounds x="582" y="135" width="75" height="27" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0cw82al_di" bpmnElement="Activity_EnterApplicationDetails">
-        <dc:Bounds x="270" y="357" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1rx0os8_di" bpmnElement="Activity_FirstUnderWriter">
-        <dc:Bounds x="1950" y="380" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0ik6vw8_di" bpmnElement="Activity_SecondUnderWriterCheck">
-        <dc:Bounds x="2240" y="380" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1aam2do_di" bpmnElement="Activity_1aam2do" isExpanded="true">
         <dc:Bounds x="900" y="140" width="830" height="560" />
@@ -235,17 +226,18 @@
       <bpmndi:BPMNShape id="Event_1qry8hd_di" bpmnElement="Event_PullingDataStarted">
         <dc:Bounds x="940" y="379" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0f3qfsp_di" bpmnElement="Gateway_DivergingAllRequests">
+      <bpmndi:BPMNShape id="Gateway_0f3qfsp_di" bpmnElement="Gateway_DivergedAllRequests">
         <dc:Bounds x="1035" y="372" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_04dmfag_di" bpmnElement="Gateway_ConvergingAllRequests">
+      <bpmndi:BPMNShape id="Gateway_04dmfag_di" bpmnElement="Gateway_ConvergedAllRequests">
         <dc:Bounds x="1435" y="372" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1qw1b4g_di" bpmnElement="Event_PullingDataEnded">
         <dc:Bounds x="1562" y="379" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1jcap34_di" bpmnElement="Activity_FloodZoneDetermination">
+      <bpmndi:BPMNShape id="Activity_1jcap34_di" bpmnElement="Activity_FloodZoneDetermined">
         <dc:Bounds x="1170" y="180" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1s6kfd8_di" bpmnElement="Activity_CreditReports">
         <dc:Bounds x="1170" y="290" width="100" height="80" />
@@ -340,8 +332,9 @@
           <dc:Bounds x="785" y="342" width="75" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1gyvh35_di" bpmnElement="Activity_DetermineMortgageScoreAndAmount">
+      <bpmndi:BPMNShape id="Activity_1gyvh35_di" bpmnElement="Activity_DeterminedMortgageScoreAndAmount">
         <dc:Bounds x="1790" y="380" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0oerj64_di" bpmnElement="Gateway_FirstUWApproval" isMarkerVisible="true">
         <dc:Bounds x="2115" y="395" width="50" height="50" />
@@ -375,12 +368,25 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_04mwa5k_di" bpmnElement="Activity_MortgagePayment">
         <dc:Bounds x="2510" y="380" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1eql2ng_di" bpmnElement="Activity_SecondUnderWriterReject">
+      <bpmndi:BPMNShape id="Activity_1eql2ng_di" bpmnElement="Activity_SecondUnderWriterRejected">
         <dc:Bounds x="2370" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_17zxwl8_di" bpmnElement="Activity_FirstUnderwriterRejection">
+      <bpmndi:BPMNShape id="Activity_17zxwl8_di" bpmnElement="Activity_FirstUnderwriterRejected">
         <dc:Bounds x="2090" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0cw82al_di" bpmnElement="Activity_EnteredApplicationDetails">
+        <dc:Bounds x="270" y="357" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1rx0os8_di" bpmnElement="Activity_FirstUnderWriterMaker">
+        <dc:Bounds x="1950" y="380" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ik6vw8_di" bpmnElement="Activity_SecondUnderWriterCheck">
+        <dc:Bounds x="2240" y="380" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0canc6n_di" bpmnElement="Flow_0canc6n">
         <di:waypoint x="215" y="397" />
