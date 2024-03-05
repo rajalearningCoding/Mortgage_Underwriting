@@ -15,13 +15,12 @@ import java.util.logging.Logger;
 public class BorrowerControllers {
     private final Logger LOGGER = Logger.getLogger(LoggerDelegate.class.getName());
 
-    @RestController
+    /*@RestController
     //@RequestMapping("/user")
     public class UserController {
         @Autowired
         private BorrowerServices borrowerService;
-        @Autowired
-        private BorrowerRepository borrowerRepository;
+
 
         // Creating User
         @PostMapping("/create-Borrower")
@@ -40,5 +39,5 @@ public class BorrowerControllers {
 
 
 
-    }
+    }*/
 }

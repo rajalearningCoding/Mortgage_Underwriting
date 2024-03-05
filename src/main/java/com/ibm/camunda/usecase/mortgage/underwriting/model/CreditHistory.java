@@ -16,6 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Embeddable
 @Table(name= "CreditHistory")
 public class CreditHistory {
 	@Id
@@ -24,9 +25,9 @@ public class CreditHistory {
 	private long id;
 	public long credScore;
 	public String credReport;
-	@ManyToOne(fetch = FetchType.EAGER )
-	@JoinColumn(name="caseNo")
-	private Borrower borrower;
+	//	@ManyToOne(fetch = FetchType.EAGER )
+	//@JoinColumn(name="caseNo")
+	//	private Borrower borrower;
 
 
 }

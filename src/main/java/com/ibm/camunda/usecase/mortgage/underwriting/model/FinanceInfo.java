@@ -15,12 +15,13 @@ import lombok.Setter;
  *
  *
  */
-//@Embeddable
+@Embeddable
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+
 @Table(name= "FinanceInfo")
 public class FinanceInfo {
 	@Id
@@ -30,9 +31,9 @@ public class FinanceInfo {
 	public String assets;
 	public String liabilities;
 	public long debts;
-	@ManyToOne(fetch = FetchType.EAGER )
-	@JoinColumn(name="caseNo")
-	private Borrower borrower;
+	//@ManyToOne(fetch = FetchType.EAGER )
+	//@JoinColumn(name="caseNo")
+//	private Borrower borrower;
 
 
 }

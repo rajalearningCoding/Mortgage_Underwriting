@@ -13,6 +13,7 @@ import lombok.Setter;
  *
  *
  */
+@Embeddable
 @Getter
 @Setter
 @AllArgsConstructor
@@ -34,9 +35,9 @@ public class Address {
 	private String state;
 	private String city;
 	private int pin;
-	@ManyToOne(fetch = FetchType.EAGER )
-	@JoinColumn(name="ContactInfo_ID")
-	private Borrower borrower;
+	//@ManyToOne(fetch = FetchType.EAGER )
+	//@JoinColumn(name="ContactInfo_ID")
+	//private Borrower borrower;
 		
 
 }

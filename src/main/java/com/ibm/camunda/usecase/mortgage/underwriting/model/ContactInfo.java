@@ -20,14 +20,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-//@Embeddable
+@Embeddable
 @Entity
 @Table(name = "ContactInfo")
 public class ContactInfo {
 
-	/**
-	 * 
-	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="ContactInfo_ID")
@@ -36,9 +33,9 @@ public class ContactInfo {
 	public long phoneNumber;
 	public String email;
 
-	@ManyToOne(fetch = FetchType.EAGER )
-	@JoinColumn(name="caseNo")
-	private Borrower borrower;
+	//@ManyToOne(fetch = FetchType.EAGER )
+	//@JoinColumn(name="caseNo")
+	//private Borrower borrower;
 
 
 

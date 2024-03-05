@@ -46,7 +46,7 @@ public class Borrower {
 
 	// relationship
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "Borrower")
+	/*@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "Borrower")
 	@JsonIgnore
 	private Set<CreditHistory> creditHistories = new HashSet<>();
 
@@ -59,7 +59,7 @@ public class Borrower {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "Borrower")
 	@JsonIgnore
-	private Set<ContactInfo> contactInfos = new HashSet<>();
+	private Set<ContactInfo> contactInfos = new HashSet<>();*/
 
 
 

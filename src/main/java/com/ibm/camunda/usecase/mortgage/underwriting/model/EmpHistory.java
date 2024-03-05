@@ -17,12 +17,13 @@ import java.util.Date;
  *
  *
  */
-//@Embeddable
+@Embeddable
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+
 @Table(name= "EmpHistory")
 public class EmpHistory {
 	@Id
@@ -33,8 +34,8 @@ public class EmpHistory {
 	public Date empStartDate;
 	public Date empEndDate;
 	public long income;
-	@ManyToOne(fetch = FetchType.EAGER )
-	@JoinColumn(name="caseNo")
-	private Borrower borrower;
+	//@ManyToOne(fetch = FetchType.EAGER )
+	//@JoinColumn(name="caseNo")
+	//private Borrower borrower;
 
 }
