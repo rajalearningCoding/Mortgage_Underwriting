@@ -8,7 +8,7 @@
     <bpmn:sequenceFlow id="Flow_1taaeu6" sourceRef="Activity_EnterApplicationDetails" targetRef="Activity_CheckDuplicate" />
     <bpmn:startEvent id="EventStart_MortgageProcessFromMesssage" name="Create Process from Message">
       <bpmn:outgoing>Flow_0bksqjb</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0ra1c86" messageRef="Message_0r3ql0p" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0ra1c86" messageRef="Message_0j867j8" />
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_0bksqjb" sourceRef="EventStart_MortgageProcessFromMesssage" targetRef="Activity_EnterApplicationDetails" />
     <bpmn:manualTask id="Activity_CheckDuplicate" name="Check Duplicate">
@@ -184,6 +184,7 @@
   <bpmn:message id="Message_2be27o8" name="Message_AppraisalReports" />
   <bpmn:message id="Message_3v7jleu" name="Message_TitleReports" />
   <bpmn:message id="Message_0r3ql0p" name="StartMortgageProcessFromMessage" />
+  <bpmn:message id="Message_0j867j8" name="Message_TEST" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_MortgageUnderWritingProcess">
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_StartMortgageUnderwritingFromtasklist">
