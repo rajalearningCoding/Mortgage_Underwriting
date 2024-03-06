@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ibm.camunda.usecase.mortgage.underwriting.repository;
+package com.ibm.camunda.usecase.mortgage.underwriting.def.services.repository;
 
 import com.ibm.camunda.usecase.mortgage.underwriting.model.Borrower;
 import org.springframework.context.annotation.Bean;

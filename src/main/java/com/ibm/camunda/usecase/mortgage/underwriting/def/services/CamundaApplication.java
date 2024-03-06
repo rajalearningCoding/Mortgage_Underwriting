@@ -1,11 +1,12 @@
-package com.ibm.camunda.usecase.mortgage.underwriting.Services;
+package com.ibm.camunda.usecase.mortgage.underwriting.def.services;
 
+import com.ibm.camunda.usecase.mortgage.underwriting.def.services.repository.BorrowerRepository;
 //import com.ibm.camunda.usecase.mortgage.underwriting.Services.Implementation.BorrowerServiceImpl;
 import com.ibm.camunda.usecase.mortgage.underwriting.model.Borrower;
 import com.ibm.camunda.usecase.mortgage.underwriting.model.ContactInfo;
 import com.ibm.camunda.usecase.mortgage.underwriting.model.CreditHistory;
 import com.ibm.camunda.usecase.mortgage.underwriting.model.EmpHistory;
-import com.ibm.camunda.usecase.mortgage.underwriting.repository.BorrowerRepository;
+
 import org.camunda.bpm.spring.boot.starter.annotation.EnableProcessApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

@@ -1,4 +1,4 @@
-package com.ibm.camunda.usecase.mortgage.underwriting.Services.Implementation;
+package com.ibm.camunda.usecase.mortgage.underwriting.def.services.implementation;
 
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;

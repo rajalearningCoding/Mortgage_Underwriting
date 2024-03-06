@@ -1,16 +1,8 @@
-package com.ibm.camunda.usecase.mortgage.underwriting.Controllers;
+package com.ibm.camunda.usecase.mortgage.underwriting.controllers;
 
-import com.ibm.camunda.usecase.mortgage.underwriting.Services.BorrowerServices;
-import com.ibm.camunda.usecase.mortgage.underwriting.delegate.LoggerDelegate;
-import com.ibm.camunda.usecase.mortgage.underwriting.model.Borrower;
-import com.ibm.camunda.usecase.mortgage.underwriting.repository.BorrowerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.HashSet;
-import java.util.Set;
 import java.util.logging.Logger;
+
+import com.ibm.camunda.usecase.mortgage.underwriting.delegate.LoggerDelegate;
 
 public class BorrowerControllers {
     private final Logger LOGGER = Logger.getLogger(LoggerDelegate.class.getName());

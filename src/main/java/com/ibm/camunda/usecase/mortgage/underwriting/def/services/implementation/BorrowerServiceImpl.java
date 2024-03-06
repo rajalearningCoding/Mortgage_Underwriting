@@ -1,13 +1,13 @@
-package com.ibm.camunda.usecase.mortgage.underwriting.Services.Implementation;
+package com.ibm.camunda.usecase.mortgage.underwriting.def.services.implementation;
 
-import com.ibm.camunda.usecase.mortgage.underwriting.Services.BorrowerServices;
-import com.ibm.camunda.usecase.mortgage.underwriting.model.Borrower;
-import com.ibm.camunda.usecase.mortgage.underwriting.repository.BorrowerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
+import com.ibm.camunda.usecase.mortgage.underwriting.model.Borrower;
+import com.ibm.camunda.usecase.mortgage.underwriting.def.services.*;
+import com.ibm.camunda.usecase.mortgage.underwriting.def.services.repository.BorrowerRepository;
 
 
 @Service
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class BorrowerServiceImpl  implements BorrowerServices{
 
     @Autowired
-    private  BorrowerRepository borrowerRepository;
+    public  BorrowerRepository borrowerRepository;
 
     @Override
     @Bean

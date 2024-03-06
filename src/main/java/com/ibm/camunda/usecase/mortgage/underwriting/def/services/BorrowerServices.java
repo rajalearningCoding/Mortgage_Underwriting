@@ -1,4 +1,4 @@
-package com.ibm.camunda.usecase.mortgage.underwriting.Services;
+package com.ibm.camunda.usecase.mortgage.underwriting.def.services;
 
 import com.ibm.camunda.usecase.mortgage.underwriting.model.*;
 
