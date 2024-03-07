@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ibm.camunda.usecase.mortgage.underwriting.model.Borrower;
@@ -22,11 +23,13 @@ import com.ibm.camunda.usecase.mortgage.underwriting.service.SaveBorrowerService
 @Component("saveBorrower")
 public class SaveBorrowerDelegate implements JavaDelegate{
 	private final Logger LOGGER = Logger.getLogger(SaveBorrowerDelegate.class.getName());
+	@Autowired
+	SaveBorrowerService sb;
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		// TODO Auto-generated method stub
 		Borrower b = new Borrower();
-		SaveBorrowerService sb = new SaveBorrowerService();
+
 		String borrowerType="O";
 		String name ;
 		String panNo ;
@@ -71,7 +74,7 @@ public class SaveBorrowerDelegate implements JavaDelegate{
 		String empEndString;
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 		System.out.println("delegate called");
-		if(execution.getVariable("dob")!= null) {
+		if(execution.getVariable("dob")!= null && execution.getVariable("dob")!= "") {
 			dobString =(String) execution.getVariable("dob");
 			dob = formatter.parse(dobString);
 			b.setDob(dob);
@@ -83,7 +86,7 @@ public class SaveBorrowerDelegate implements JavaDelegate{
 			empStart = formatter.parse(empStartString);
 			b.setEmpStart(empStart);
 		}
-		if(execution.getVariable("empEnd")!= null) {
+		if(execution.getVariable("empEnd")!= null && execution.getVariable("empEnd")!="" ) {
 			empEndString =(String) execution.getVariable("empEnd");
 			empEnd = formatter.parse(empEndString);
 			b.setEmpEnd(empEnd);
@@ -186,85 +189,86 @@ public class SaveBorrowerDelegate implements JavaDelegate{
 			b.setPropType(propType);
 		}
 		
-		if(execution.getVariable("pin") != null) {
+		if(execution.getVariable("pin") != null  && execution.getVariable("pin")!="") {
 			pin=(Long) execution.getVariable("pin");
 			System.out.println("pin:"+pin);
 			b.setPin(pin);
 		}
-		if(execution.getVariable("phoneNumber") != null) {
+		if(execution.getVariable("phoneNumber") != null && execution.getVariable("phoneNumber") !="") {
 			phoneNumber=(Long) execution.getVariable("phoneNumber");
 			System.out.println("phoneNumber:"+phoneNumber);
 			b.setPhoneNumber(phoneNumber);
 		}
-		if(execution.getVariable("dti") != null) {
+		if(execution.getVariable("dti") != null && execution.getVariable("dti")!="") {
 			dti=(Long) execution.getVariable("dti");
 			System.out.println("dti:"+dti);
 			b.setDti(dti);
 		}
-		if(execution.getVariable("ltv") != null) {
+		if(execution.getVariable("ltv") != null && execution.getVariable("ltv")!="") {
 			ltv=(Long) execution.getVariable("ltv");
 			System.out.println("ltv:"+ltv);
 			b.setLtv(ltv);
 		}
-		if(execution.getVariable("creditScore") != null) {
+		if(execution.getVariable("creditScore") != null && execution.getVariable("creditScore") !="") {
 			creditScore=(Long) execution.getVariable("creditScore");
 			System.out.println("creditScore:"+creditScore);
 			b.setCreditScore(creditScore);
 		}
-		if(execution.getVariable("income") != null) {
+		if(execution.getVariable("income") != null && execution.getVariable("income") != "") {
 			income=(Long) execution.getVariable("income");
 			System.out.println("income:"+income);
 			b.setIncome(income);
 		}
-		if(execution.getVariable("debt") != null) {
+		if(execution.getVariable("debt") != null && execution.getVariable("debt") !="") {
 			debt=(Long) execution.getVariable("debt");
 			System.out.println("debt:"+debt);
 			b.setDebt(debt);
 		}
-		if(execution.getVariable("loanAmount") != null) {
+		if(execution.getVariable("loanAmount") != null && execution.getVariable("loanAmount")!="") {
 			loanAmount=(Long) execution.getVariable("loanAmount");
 			System.out.println("loanAmount:"+loanAmount);
 			b.setLoanAmount(loanAmount);
 		}
-		if(execution.getVariable("intRate") != null) {
+		if(execution.getVariable("intRate") != null && execution.getVariable("intRate") != "") {
 			intRate=(Long) execution.getVariable("intRate");
 			System.out.println("intRate:"+intRate);
 			b.setIntRate(intRate);
 		}
-		if(execution.getVariable("dpAmount") != null) {
+		if(execution.getVariable("dpAmount") != null && execution.getVariable("dpAmount") !="") {
 			dpAmount=(Long) execution.getVariable("dpAmount");
 			System.out.println("dpAmount:"+dpAmount);
 			b.setDpAmount(dpAmount);
 		}
-		if(execution.getVariable("propValue") != null) {
+		if(execution.getVariable("propValue") != null && execution.getVariable("propValue") != "") {
 			propValue=(Long) execution.getVariable("propValue");
 			System.out.println("propValue:"+propValue);
 			b.setPropValue(propValue);
 		}
-		if(execution.getVariable("propArea") != null) {
+		if(execution.getVariable("propArea") != null && execution.getVariable("propValue") != "") {
 			propArea=(Long) execution.getVariable("propArea");
 			System.out.println("propArea:"+propArea);
 			b.setPropArea(propArea);
 		}
-		if(execution.getVariable("nBed") != null) {
+		if(execution.getVariable("nBed") != null && execution.getVariable("nBed") != "") {
 			nBed=(Long) execution.getVariable("nBed");
 			System.out.println("nBed:"+nBed);
 			b.setNBed(nBed);
 		}
-		if(execution.getVariable("nBath") != null) {
+		if(execution.getVariable("nBath") != null && execution.getVariable("nBath") != "") {
 			nBath=(Long) execution.getVariable("nBath");
 			System.out.println("nBath:"+nBath);
 			b.setNBath(nBath);
 		}
-		if(execution.getVariable("lotSize") != null) {
+		if(execution.getVariable("lotSize") != null && execution.getVariable("lotSize") != "") {
 			lotSize=(Long) execution.getVariable("lotSize");
 			System.out.println("lotSize:"+lotSize);
 			b.setLotSize(lotSize);
 		}
 		b.setBorrowerType(borrowerType);
 		b.setCaseNo(caseNo);
+		//this.borrowerRepository.save(b);
 		
-		sb.saveBorrower(b);
+		this.sb.saveBorrower(b);
 		
 	}
 
