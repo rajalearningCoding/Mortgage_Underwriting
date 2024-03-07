@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0ee2lhm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.19.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.20.0">
+  <bpmn:process id="Process_0k6h7d9" isExecutable="true" camunda:historyTimeToLive="180">
+    <bpmn:extensionElements>
+      <camunda:executionListener class="com.ibm.camunda.usecase.mortgage.underwriting.listener.ApplicationListener" event="start" />
+    </bpmn:extensionElements>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1yo4ksa</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1yo4ksa" sourceRef="StartEvent_1" targetRef="Activity_0kggunf" />
+    <bpmn:sequenceFlow id="Flow_0gndi5o" sourceRef="Activity_0kggunf" targetRef="Activity_0yljwhy" />
+    <bpmn:endEvent id="Event_0j9wmg1">
+      <bpmn:incoming>Flow_1cio055</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="Activity_0kggunf" name="Enter Details" camunda:formKey="embedded:/forms/mortgageentry-form.html">
+      <bpmn:incoming>Flow_1yo4ksa</bpmn:incoming>
+      <bpmn:outgoing>Flow_0gndi5o</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_0yljwhy" name="Save details" camunda:delegateExpression="${saveBorrower}">
+      <bpmn:incoming>Flow_0gndi5o</bpmn:incoming>
+      <bpmn:outgoing>Flow_1dr0eel</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1cio055" sourceRef="Activity_0viozz1" targetRef="Event_0j9wmg1" />
+    <bpmn:sequenceFlow id="Flow_1dr0eel" sourceRef="Activity_0yljwhy" targetRef="Activity_0viozz1" />
+    <bpmn:userTask id="Activity_0viozz1" name="Review" camunda:formKey="embedded:/forms/mortgageuw-form.html">
+      <bpmn:incoming>Flow_1dr0eel</bpmn:incoming>
+      <bpmn:outgoing>Flow_1cio055</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:boundaryEvent id="Event_1r10smz" attachedToRef="Activity_0yljwhy">
+      <bpmn:outgoing>Flow_16q9nop</bpmn:outgoing>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_1xmh19m" errorRef="Error_1kz8fpi" />
+    </bpmn:boundaryEvent>
+    <bpmn:sequenceFlow id="Flow_16q9nop" sourceRef="Event_1r10smz" targetRef="Activity_01mb0lr" />
+    <bpmn:scriptTask id="Activity_01mb0lr" name="User Exist" scriptFormat="Javascript">
+      <bpmn:incoming>Flow_16q9nop</bpmn:incoming>
+      <bpmn:outgoing>Flow_18aa9ce</bpmn:outgoing>
+      <bpmn:script>print("pro special offer added");</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:endEvent id="Event_0kolqhf">
+      <bpmn:incoming>Flow_18aa9ce</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_18aa9ce" sourceRef="Activity_01mb0lr" targetRef="Event_0kolqhf" />
+  </bpmn:process>
+  <bpmn:error id="Error_1kz8fpi" name="Error_UserExist" errorCode="errorCode" camunda:errorMessage="errorMsg" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_0k6h7d9">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1jx97h0_di" bpmnElement="Activity_0kggunf">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_16ehim2_di" bpmnElement="Activity_0yljwhy">
+        <dc:Bounds x="430" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0j9wmg1_di" bpmnElement="Event_0j9wmg1">
+        <dc:Bounds x="702" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1s49kla_di" bpmnElement="Activity_0viozz1">
+        <dc:Bounds x="560" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ybsw7w_di" bpmnElement="Activity_01mb0lr">
+        <dc:Bounds x="550" y="200" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0kolqhf_di" bpmnElement="Event_0kolqhf">
+        <dc:Bounds x="702" y="222" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1d7ntkx_di" bpmnElement="Event_1r10smz">
+        <dc:Bounds x="462" y="139" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1yo4ksa_di" bpmnElement="Flow_1yo4ksa">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0gndi5o_di" bpmnElement="Flow_0gndi5o">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="430" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1cio055_di" bpmnElement="Flow_1cio055">
+        <di:waypoint x="660" y="117" />
+        <di:waypoint x="702" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1dr0eel_di" bpmnElement="Flow_1dr0eel">
+        <di:waypoint x="530" y="117" />
+        <di:waypoint x="560" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16q9nop_di" bpmnElement="Flow_16q9nop">
+        <di:waypoint x="480" y="175" />
+        <di:waypoint x="480" y="240" />
+        <di:waypoint x="550" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18aa9ce_di" bpmnElement="Flow_18aa9ce">
+        <di:waypoint x="650" y="240" />
+        <di:waypoint x="702" y="240" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
