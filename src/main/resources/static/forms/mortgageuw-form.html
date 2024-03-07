@@ -77,6 +77,10 @@ embedded:/forms/mortgageuw-form.html
       width: calc(100% - 10px);
       padding: 5px;
       }
+      select {
+      width: calc(100% - 10px);
+      padding: 5px;
+      }
       input[type="date"] {
       padding: 4px 5px;
       }
@@ -417,15 +421,27 @@ embedded:/forms/mortgageuw-form.html
           <div class="item">
             <label for="note">Notes<span>*</span></label>
             <input id="note" type="text" name="note" cam-variable-name="note" cam-variable-type="String"/>
-          </div>    
-          <div class="item">
-            <label for="uw">Notes<span>*</span></label>
-            <input id="uw" type="text" name="uw" cam-variable-name="uw" cam-variable-type="String"/>
-          </div>           
+          </div>              
           
        </fieldset>
         
 		<br/>
+
+<fieldset>		
+<legend>Audit Trail</legend>		
+<table style="width:100%">
+  <tr>
+    <th>Decision</th>
+    <th>Comments</th>
+    <th>Owner</th>
+  </tr>
+  <tr>
+    <td><input id="pastDecision" type="text" name="pastDecision" cam-variable-name="pastDecision" cam-variable-type="String"/></td>
+    <td><input id="pastNote" type="text" name="pastNote" cam-variable-name="pastNote" cam-variable-type="String"/></td>
+    <td><input id="uw" type="text" name="uw" cam-variable-name="uw" cam-variable-type="String"/></td>
+  </tr>
+</table>
+
 		
 
 <script cam-script type="text/form-script">

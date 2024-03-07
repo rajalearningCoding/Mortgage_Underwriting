@@ -8,13 +8,14 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Logger;
 
+import org.camunda.bpm.engine.delegate.BpmnError;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ibm.camunda.usecase.mortgage.underwriting.model.Borrower;
-import com.ibm.camunda.usecase.mortgage.underwriting.service.SaveBorrowerService;
+import com.ibm.camunda.usecase.mortgage.underwriting.service.SaveBorrowerServiceImpl;
 
 /**
  * @author LIYAJERARD
@@ -24,7 +25,7 @@ import com.ibm.camunda.usecase.mortgage.underwriting.service.SaveBorrowerService
 public class SaveBorrowerDelegate implements JavaDelegate{
 	private final Logger LOGGER = Logger.getLogger(SaveBorrowerDelegate.class.getName());
 	@Autowired
-	SaveBorrowerService sb;
+	SaveBorrowerServiceImpl sb;
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		// TODO Auto-generated method stub
@@ -52,11 +53,11 @@ public class SaveBorrowerDelegate implements JavaDelegate{
 		String employerName;
 		Date empStart;
 		Date empEnd;
-		long income;
+		long income = 0;
 		String assets;
 		String liabilities;
-		long debt;
-		long loanAmount;
+		long debt = 0;
+		long loanAmount = 0;
 		String loanTerm;
 		long intRate;
 		String loanPurp;
@@ -64,7 +65,7 @@ public class SaveBorrowerDelegate implements JavaDelegate{
 		String loanPrg;
 		String propAddress;
 		String propType;
-		long propValue;
+		long propValue = 0;
 		long propArea;
 		long nBed;
 		long nBath;
@@ -199,16 +200,13 @@ public class SaveBorrowerDelegate implements JavaDelegate{
 			System.out.println("phoneNumber:"+phoneNumber);
 			b.setPhoneNumber(phoneNumber);
 		}
-		if(execution.getVariable("dti") != null && execution.getVariable("dti")!="") {
-			dti=(Long) execution.getVariable("dti");
-			System.out.println("dti:"+dti);
-			b.setDti(dti);
-		}
-		if(execution.getVariable("ltv") != null && execution.getVariable("ltv")!="") {
-			ltv=(Long) execution.getVariable("ltv");
-			System.out.println("ltv:"+ltv);
-			b.setLtv(ltv);
-		}
+		/*
+		 * if(execution.getVariable("dti") != null && execution.getVariable("dti")!="")
+		 * { dti=(Long) execution.getVariable("dti"); System.out.println("dti:"+dti);
+		 * b.setDti(dti); } if(execution.getVariable("ltv") != null &&
+		 * execution.getVariable("ltv")!="") { ltv=(Long) execution.getVariable("ltv");
+		 * System.out.println("ltv:"+ltv); b.setLtv(ltv); }
+		 */
 		if(execution.getVariable("creditScore") != null && execution.getVariable("creditScore") !="") {
 			creditScore=(Long) execution.getVariable("creditScore");
 			System.out.println("creditScore:"+creditScore);
@@ -264,11 +262,26 @@ public class SaveBorrowerDelegate implements JavaDelegate{
 			System.out.println("lotSize:"+lotSize);
 			b.setLotSize(lotSize);
 		}
+		if(debt!=0 && income!=0) {
+			dti=debt/income;
+			b.setDti(dti);
+			execution.setVariable("dti", dti);
+		}
+		if(loanAmount!=0 && propValue!=0) {
+			ltv=loanAmount/propValue;
+			b.setLtv(ltv);
+			execution.setVariable("ltv", ltv);
+		}
 		b.setBorrowerType(borrowerType);
 		b.setCaseNo(caseNo);
 		//this.borrowerRepository.save(b);
 		
-		this.sb.saveBorrower(b);
+		try {
+			this.sb.saveBorrower(b);
+		}catch(BpmnError bpmnErr) {
+			System.out.println("error Catched");
+			throw bpmnErr;
+		}
 		
 	}
 

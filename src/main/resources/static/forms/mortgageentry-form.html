@@ -77,6 +77,10 @@ embedded:/forms/mortgageentry-form.html
       width: calc(100% - 10px);
       padding: 5px;
       }
+      select {
+      width: calc(100% - 10px);
+      padding: 5px;
+      }
       input[type="date"] {
       padding: 4px 5px;
       }
@@ -227,12 +231,25 @@ embedded:/forms/mortgageentry-form.html
           </div>
           <div class="item">
             <label for="country">Country<span>*</span></label>
-            <input id="country" type="text"   name="country" cam-variable-name="country" cam-variable-type="String"/>
+            <!-- <input id="country" type="text"   name="country" cam-variable-name="country" cam-variable-type="String"/> -->
+            <select id=country cam-variable-name="country" cam-variable-type="String">
+          	<option value=""></option>
+          	<option value="">India</option>
+          	<option value="2">South Africa</option>
+          	<option value="3">Russia</option>
+        	</select> 
           </div>
           <div class="item">
             <label for="state">State<span>*</span></label>
-            <input id="state" type="text"   name="state" cam-variable-name="state" cam-variable-type="String" />
-          </div>  
+<!--             <input id="state" type="text"   name="state" cam-variable-name="state" cam-variable-type="String" />-->
+            <select id=state cam-variable-name="state" cam-variable-type="String">
+          	<option value=""></option>
+          	<option value="">Kerala</option>
+          	<option value="2">West Bengal</option>
+          	<option value="3">Kolkata</option>
+        	</select> 
+ 
+ 		  </div>  
           <div class="item">
             <label for="city">City<span>*</span></label>
             <input id="city" type="text"   name="city" cam-variable-name="city" cam-variable-type="String"/>
@@ -358,18 +375,29 @@ embedded:/forms/mortgageentry-form.html
           </div>    
           <div class="item">
             <label for="loanPurp">Loan Purpose<span>*</span></label>
-            <input id="loanPurp" type="text"   name="loanPurp" cam-variable-name="loanPurp" cam-variable-type="String" />
+            <!-- <input id="loanPurp" type="text"   name="loanPurp" cam-variable-name="loanPurp" cam-variable-type="String" /> -->
+            <select id=loanPurp cam-variable-name="loanPurp" cam-variable-type="String">
+          	<option value=""></option>
+          	<option value="">Purchase</option>
+          	<option value="2">Refinance</option>
+        	</select> 
           </div>  
           <div class="item">
             <label for="loanPrg">Loan Programme<span>*</span></label>
-            <input id="loanPrg" type="text"   name="loanPrg" cam-variable-name="loanPrg" cam-variable-type="String"/>
+            <!-- <input id="loanPrg" type="text"   name="loanPrg" cam-variable-name="loanPrg" cam-variable-type="String"/> -->
+            <select id=loanPrg cam-variable-name="loanPrg" cam-variable-type="String">
+          	<option value=""></option>
+          	<option value="">Conventional</option>
+          	<option value="2">FHA</option>
+          	<option value="3">VA</option>
+        	</select> 
           </div>   
        </fieldset>
        <br/> 
 
 
 
-		<fieldset>
+<!-- 		<fieldset>
         <legend>Credit Risk Assessment</legend>
         <div class="colums">
           <div class="item">
@@ -399,8 +427,8 @@ embedded:/forms/mortgageentry-form.html
        </fieldset>
        <br/> 
 
-		<br/>
-		<fieldset>
+		<br/> -->
+<!-- 		<fieldset>
         <legend>Underwriter Decision</legend>
         <div class="colums">
           <div class="item">
@@ -418,7 +446,7 @@ embedded:/forms/mortgageentry-form.html
           </div>    
        </fieldset>
         
-		<br/>
+		<br/> -->
 		
 
 <script cam-script type="text/form-script">
