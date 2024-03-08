@@ -21,7 +21,7 @@
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1hx4kjj" sourceRef="Activity_SaveDetailForDuplicate" targetRef="Event_DuplicateCaseEnd" />
     <bpmn:subProcess id="Activity_1aam2do" name="Pulling data from internal / external systems">
-      <bpmn:incoming>Flow_0afiaw6</bpmn:incoming>
+      <bpmn:incoming>Flow_0fdlf7d</bpmn:incoming>
       <bpmn:outgoing>Flow_0sfjiya</bpmn:outgoing>
       <bpmn:startEvent id="Event_PullingDataStarted">
         <bpmn:outgoing>Flow_0e5tnir</bpmn:outgoing>
@@ -92,9 +92,8 @@
     <bpmn:exclusiveGateway id="Gateway_ReverificationRequested" name="Reverification requested from UW">
       <bpmn:incoming>Flow_14aqhry</bpmn:incoming>
       <bpmn:incoming>Flow_1g4dehs</bpmn:incoming>
-      <bpmn:outgoing>Flow_0afiaw6</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0fdlf7d</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_0afiaw6" sourceRef="Gateway_ReverificationRequested" targetRef="Activity_1aam2do" />
     <bpmn:sequenceFlow id="Flow_0sfjiya" sourceRef="Activity_1aam2do" targetRef="Activity_DeterminedMortgageScoreAndAmount" />
     <bpmn:manualTask id="Activity_DeterminedMortgageScoreAndAmount" name="Determine Mortgage score and amount">
       <bpmn:incoming>Flow_0sfjiya</bpmn:incoming>
@@ -102,12 +101,11 @@
     </bpmn:manualTask>
     <bpmn:sequenceFlow id="Flow_1xcqykb" sourceRef="Activity_DeterminedMortgageScoreAndAmount" targetRef="Activity_FirstUnderWriterMaker" />
     <bpmn:exclusiveGateway id="Gateway_FirstUWApproval" name="is first UW Approved">
-      <bpmn:incoming>Flow_1gx3orv</bpmn:incoming>
+      <bpmn:incoming>Flow_0zk4ijh</bpmn:incoming>
       <bpmn:outgoing>Flow_0vanaxz</bpmn:outgoing>
       <bpmn:outgoing>Flow_1329rh7</bpmn:outgoing>
       <bpmn:outgoing>Flow_14aqhry</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_1gx3orv" sourceRef="Activity_FirstUnderWriterMaker" targetRef="Gateway_FirstUWApproval" />
     <bpmn:sequenceFlow id="Flow_0vanaxz" sourceRef="Gateway_FirstUWApproval" targetRef="Activity_FirstUnderwriterRejected">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">isfirstUWApproved==false</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -151,11 +149,17 @@
       <bpmn:outgoing>Flow_14rmau3</bpmn:outgoing>
     </bpmn:manualTask>
     <bpmn:sequenceFlow id="Flow_14aqhry" sourceRef="Gateway_FirstUWApproval" targetRef="Gateway_ReverificationRequested" />
-    <bpmn:userTask id="Activity_FirstUnderWriterMaker" name="First Underwritter(Maker)" camunda:formKey="embedded:/forms/mortgageuw-form.html">
+    <bpmn:userTask id="Activity_FirstUnderWriterMaker" name="First Underwritter(Maker)" camunda:formKey="embedded:/forms/mortgagereview-form.html" camunda:assignee="fuw">
+      <bpmn:extensionElements>
+        <camunda:taskListener class="com.ibm.camunda.usecase.mortgage.underwriting.listener.FUWTaskListener" event="complete" />
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1xcqykb</bpmn:incoming>
-      <bpmn:outgoing>Flow_1gx3orv</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0zk4ijh</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_SecondUnderWriterCheck" name="Second Underwriter(Checker)">
+    <bpmn:userTask id="Activity_SecondUnderWriterCheck" name="Second Underwriter(Checker)" camunda:formKey="embedded:/forms/mortgageuw-form.html" camunda:candidateUsers="suw,uw1,fuw">
+      <bpmn:extensionElements>
+        <camunda:taskListener class="com.ibm.camunda.usecase.mortgage.underwriting.listener.SUWTaskListener" event="create" />
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1329rh7</bpmn:incoming>
       <bpmn:outgoing>Flow_1e78bn0</bpmn:outgoing>
     </bpmn:userTask>
@@ -175,6 +179,8 @@
       <bpmn:outgoing>Flow_1hx4kjj</bpmn:outgoing>
       <bpmn:script>print("Duplicate Case detected")</bpmn:script>
     </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_0fdlf7d" sourceRef="Gateway_ReverificationRequested" targetRef="Activity_1aam2do" />
+    <bpmn:sequenceFlow id="Flow_0zk4ijh" sourceRef="Activity_FirstUnderWriterMaker" targetRef="Gateway_FirstUWApproval" />
   </bpmn:process>
   <bpmn:message id="Message_1trhc4b" name="Message_CreditReportDetails" />
   <bpmn:message id="Message_2be27o8" name="Message_AppraisalReports" />
@@ -393,10 +399,6 @@
         <di:waypoint x="550" y="230" />
         <di:waypoint x="632" y="230" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0afiaw6_di" bpmnElement="Flow_0afiaw6">
-        <di:waypoint x="765" y="397" />
-        <di:waypoint x="900" y="397" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0sfjiya_di" bpmnElement="Flow_0sfjiya">
         <di:waypoint x="1650" y="420" />
         <di:waypoint x="1670" y="420" />
@@ -404,10 +406,6 @@
       <bpmndi:BPMNEdge id="Flow_1xcqykb_di" bpmnElement="Flow_1xcqykb">
         <di:waypoint x="1770" y="420" />
         <di:waypoint x="1910" y="420" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1gx3orv_di" bpmnElement="Flow_1gx3orv">
-        <di:waypoint x="2010" y="420" />
-        <di:waypoint x="2115" y="420" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0vanaxz_di" bpmnElement="Flow_0vanaxz">
         <di:waypoint x="2140" y="395" />
@@ -450,6 +448,14 @@
       <bpmndi:BPMNEdge id="Flow_1d2m6u2_di" bpmnElement="Flow_1d2m6u2">
         <di:waypoint x="500" y="339" />
         <di:waypoint x="500" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fdlf7d_di" bpmnElement="Flow_0fdlf7d">
+        <di:waypoint x="765" y="397" />
+        <di:waypoint x="900" y="397" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zk4ijh_di" bpmnElement="Flow_0zk4ijh">
+        <di:waypoint x="2010" y="420" />
+        <di:waypoint x="2115" y="420" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
