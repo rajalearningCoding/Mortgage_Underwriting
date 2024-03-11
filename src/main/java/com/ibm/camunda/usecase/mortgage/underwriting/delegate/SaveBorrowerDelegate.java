@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ibm.camunda.usecase.mortgage.underwriting.model.Borrower;
+import com.ibm.camunda.usecase.mortgage.underwriting.service.SaveBorrowerService;
 import com.ibm.camunda.usecase.mortgage.underwriting.service.SaveBorrowerServiceImpl;
 
 /**
@@ -25,7 +26,7 @@ import com.ibm.camunda.usecase.mortgage.underwriting.service.SaveBorrowerService
 public class SaveBorrowerDelegate implements JavaDelegate{
 	private final Logger LOGGER = Logger.getLogger(SaveBorrowerDelegate.class.getName());
 	@Autowired
-	SaveBorrowerServiceImpl sb;
+	SaveBorrowerService sb;
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		// TODO Auto-generated method stub

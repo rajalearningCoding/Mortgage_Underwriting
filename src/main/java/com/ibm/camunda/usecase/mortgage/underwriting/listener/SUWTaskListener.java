@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import com.ibm.camunda.usecase.mortgage.underwriting.delegate.SaveBorrowerDelegate;
 import com.ibm.camunda.usecase.mortgage.underwriting.model.Borrower;
+import com.ibm.camunda.usecase.mortgage.underwriting.service.SaveBorrowerService;
 import com.ibm.camunda.usecase.mortgage.underwriting.service.SaveBorrowerServiceImpl;
 
 /**
@@ -28,7 +29,7 @@ import com.ibm.camunda.usecase.mortgage.underwriting.service.SaveBorrowerService
 public class SUWTaskListener implements TaskListener{
 	private final Logger log = Logger.getLogger(SUWTaskListener.class.getName());
 	@Autowired
-	SaveBorrowerServiceImpl sb;
+	SaveBorrowerService sb;
 	@Override
 	public void notify(DelegateTask delegateTask) {
 		// TODO Auto-generated method stub

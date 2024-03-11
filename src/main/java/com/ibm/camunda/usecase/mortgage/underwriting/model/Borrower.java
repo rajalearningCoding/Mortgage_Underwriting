@@ -76,5 +76,7 @@ public class Borrower {
 		public long mortgageLiens;
 		public long propTaxes;
 		public String propAppraisal;
+		public String cancelReason;
+		public Date caseModifiedDate;
 
 }

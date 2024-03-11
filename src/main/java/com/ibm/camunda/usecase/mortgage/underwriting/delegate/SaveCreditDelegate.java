@@ -6,12 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ibm.camunda.usecase.mortgage.underwriting.model.Borrower;
+import com.ibm.camunda.usecase.mortgage.underwriting.service.SaveBorrowerService;
 import com.ibm.camunda.usecase.mortgage.underwriting.service.SaveBorrowerServiceImpl;
 
 @Component("saveCredit")
 public class SaveCreditDelegate implements JavaDelegate{
 	@Autowired
-	SaveBorrowerServiceImpl sb;
+	SaveBorrowerService sb;
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
