@@ -12,5 +12,7 @@ import com.ibm.camunda.usecase.mortgage.underwriting.model.Borrower;
 public interface SaveBorrowerService {
 	
 	void saveBorrower(Borrower b) throws Exception;
+	void saveCredit(Borrower b);
+	void saveUWAction(Borrower b,String actionType);
 
 }

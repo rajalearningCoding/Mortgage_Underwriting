@@ -435,9 +435,9 @@ embedded:/forms/mortgagereview-form.html
         	<label for="decision">Decision<span>*</span></label>
         	<select id=decision cam-variable-name="decision" cam-variable-type="String">
           	<option value=""></option>
-          	<option value="">Approve</option>
-          	<option value="2">Reject</option>
-          	<option value="3">Suspend</option>
+          	<option value="Approved">Approved</option>
+          	<option value="Rejected">Rejected</option>
+          	<option value="Send for review">Send for review</option>
         	</select>
           </div>
           <div class="item">
@@ -453,15 +453,23 @@ embedded:/forms/mortgagereview-form.html
 <legend>Audit Trail</legend>		
 <table style="width:100%">
   <tr>
-    <th>Decision</th>
+    <th>Action</th>
     <th>Comments</th>
     <th>Owner</th>
+    <th>Date</th>
   </tr>
   <tr>
-    <td><input id="pastDecision" type="text" name="pastDecision" cam-variable-name="pastDecision" cam-variable-type="String"/></td>
-    <td><input id="pastNote" type="text" name="pastNote" cam-variable-name="pastNote" cam-variable-type="String"/></td>
-    <td><input id="uw" type="text" name="uw" cam-variable-name="uw" cam-variable-type="String"/></td>
+    <td><input id="uw1Action" type="text" name="uw1Action" cam-variable-name="uw1Action" cam-variable-type="String"/></td>
+    <td><input id="uw1Comment" type="text" name="uw1Comment" cam-variable-name="uw1Comment" cam-variable-type="String"/></td>
+    <td><input id="uw1Name" type="text" name="uw1Name" cam-variable-name="uw1Name" cam-variable-type="String"/></td>
+    <td><input id="uw1ActionDate" type="text" name="uw1ActionDate" cam-variable-name="uw1ActionDate" cam-variable-type="String"/></td>
   </tr>
+  <tr>
+    <td><input id="uw2Action" type="text" name="uw2Action" cam-variable-name="uw2Action" cam-variable-type="String"/></td>
+    <td><input id="uw2Comment" type="text" name="uw2Comment" cam-variable-name="uw2Comment" cam-variable-type="String"/></td>
+    <td><input id="uw2Name" type="text" name="uw2Name" cam-variable-name="uw2Name" cam-variable-type="String"/></td>
+    <td><input id="uw2ActionDate" type="text" name="uw2ActionDate" cam-variable-name="uw2ActionDate" cam-variable-type="String"/></td>
+  </tr> 
 </table>
 
 			

@@ -4,19 +4,19 @@
     <bpmn:extensionElements>
       <camunda:executionListener class="com.ibm.camunda.usecase.mortgage.underwriting.listener.ApplicationListener" event="start" />
     </bpmn:extensionElements>
-    <bpmn:startEvent id="StartEvent_StartMortgageUnderwritingFromtasklist" name="Mortgage Underwriting Process Started" camunda:asyncBefore="true" camunda:formKey="embedded:/forms/mortgageentry-form.html">
+    <bpmn:startEvent id="StartEvent_StartMortgageUnderwritingFromtasklist" name="Mortgage underwriting process started" camunda:asyncBefore="true" camunda:formKey="embedded:/forms/mortgageentry-form.html">
       <bpmn:extensionElements />
       <bpmn:outgoing>Flow_0canc6n</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_0canc6n" sourceRef="StartEvent_StartMortgageUnderwritingFromtasklist" targetRef="Activity_CheckedDuplicate" />
-    <bpmn:startEvent id="EventStart_MortgageProcessFromMesssage" name="Created Process from Message" camunda:asyncBefore="true">
+    <bpmn:startEvent id="EventStart_MortgageProcessFromMesssage" name="Process started from message" camunda:asyncBefore="true">
       <bpmn:extensionElements />
       <bpmn:outgoing>Flow_0bksqjb</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0ra1c86" messageRef="Message_0j867j8" />
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_0bksqjb" sourceRef="EventStart_MortgageProcessFromMesssage" targetRef="Activity_CheckedDuplicate" />
     <bpmn:sequenceFlow id="Flow_1g4dehs" sourceRef="Activity_CheckedDuplicate" targetRef="Gateway_ReverificationRequested" />
-    <bpmn:endEvent id="Event_DuplicateCaseEnd" name="Duplicate Case End">
+    <bpmn:endEvent id="Event_DuplicateCaseEnd" name="Duplicate Case end">
       <bpmn:incoming>Flow_1hx4kjj</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1hx4kjj" sourceRef="Activity_SaveDetailForDuplicate" targetRef="Event_DuplicateCaseEnd" />
@@ -53,17 +53,9 @@
       <bpmn:sequenceFlow id="Flow_1u2kb1i" sourceRef="Event_AppraisalReports" targetRef="Gateway_ConvergedAllRequests" />
       <bpmn:sequenceFlow id="Flow_04wady6" sourceRef="Event_TitleReports" targetRef="Gateway_ConvergedAllRequests" />
       <bpmn:endEvent id="Event_PullingDataEnded">
-        <bpmn:incoming>Flow_19ztmbn</bpmn:incoming>
+        <bpmn:incoming>Flow_0iblspd</bpmn:incoming>
       </bpmn:endEvent>
-      <bpmn:sequenceFlow id="Flow_19ztmbn" sourceRef="Gateway_ConvergedAllRequests" targetRef="Event_PullingDataEnded" />
-      <bpmn:manualTask id="Activity_CreditReports" name="Credit Reports from Credit Bureaus and employment verification">
-        <bpmn:incoming>Flow_0g9881e</bpmn:incoming>
-        <bpmn:outgoing>Flow_194d6ys</bpmn:outgoing>
-      </bpmn:manualTask>
-      <bpmn:manualTask id="Activity_PropertyAppraisal" name="Property Appraisal Reports">
-        <bpmn:incoming>Flow_025nm76</bpmn:incoming>
-        <bpmn:outgoing>Flow_0wfba62</bpmn:outgoing>
-      </bpmn:manualTask>
+      <bpmn:sequenceFlow id="Flow_19ztmbn" sourceRef="Gateway_ConvergedAllRequests" targetRef="Activity_167wpi8" />
       <bpmn:intermediateCatchEvent id="Event_WaitForCreditReport" name="Received Credit Reports from Credit Bureaus">
         <bpmn:incoming>Flow_194d6ys</bpmn:incoming>
         <bpmn:outgoing>Flow_1le63oe</bpmn:outgoing>
@@ -79,7 +71,7 @@
         <bpmn:outgoing>Flow_04wady6</bpmn:outgoing>
         <bpmn:messageEventDefinition id="MessageEventDefinition_09zjfke" messageRef="Message_3v7jleu" />
       </bpmn:intermediateCatchEvent>
-      <bpmn:serviceTask id="Activity_TitleReports" name="Title Reports" camunda:asyncBefore="true" camunda:delegateExpression="${titleReports}">
+      <bpmn:serviceTask id="Activity_TitleReports" name="Retrieve title report" camunda:asyncBefore="true" camunda:delegateExpression="${titleReports}">
         <bpmn:extensionElements />
         <bpmn:incoming>Flow_19jy3gb</bpmn:incoming>
         <bpmn:outgoing>Flow_17721uf</bpmn:outgoing>
@@ -88,8 +80,21 @@
         <bpmn:incoming>Flow_08xt3wj</bpmn:incoming>
         <bpmn:outgoing>Flow_0wdhj3n</bpmn:outgoing>
       </bpmn:manualTask>
+      <bpmn:serviceTask id="Activity_CreditReports" name="Retrieve credit reports from credit bureaus" camunda:asyncBefore="true" camunda:delegateExpression="${creditReport}">
+        <bpmn:incoming>Flow_0g9881e</bpmn:incoming>
+        <bpmn:outgoing>Flow_194d6ys</bpmn:outgoing>
+      </bpmn:serviceTask>
+      <bpmn:serviceTask id="Activity_PropertyAppraisal" name="Retrieve property appraisal reports" camunda:asyncBefore="true" camunda:delegateExpression="${propertyAppraisalReport}">
+        <bpmn:incoming>Flow_025nm76</bpmn:incoming>
+        <bpmn:outgoing>Flow_0wfba62</bpmn:outgoing>
+      </bpmn:serviceTask>
+      <bpmn:sequenceFlow id="Flow_0iblspd" sourceRef="Activity_167wpi8" targetRef="Event_PullingDataEnded" />
+      <bpmn:serviceTask id="Activity_167wpi8" name="Save verification data" camunda:delegateExpression="${saveCredit}">
+        <bpmn:incoming>Flow_19ztmbn</bpmn:incoming>
+        <bpmn:outgoing>Flow_0iblspd</bpmn:outgoing>
+      </bpmn:serviceTask>
     </bpmn:subProcess>
-    <bpmn:exclusiveGateway id="Gateway_ReverificationRequested" name="Reverification requested from UW">
+    <bpmn:exclusiveGateway id="Gateway_ReverificationRequested">
       <bpmn:incoming>Flow_14aqhry</bpmn:incoming>
       <bpmn:incoming>Flow_1g4dehs</bpmn:incoming>
       <bpmn:outgoing>Flow_0fdlf7d</bpmn:outgoing>
@@ -100,37 +105,38 @@
       <bpmn:outgoing>Flow_1xcqykb</bpmn:outgoing>
     </bpmn:manualTask>
     <bpmn:sequenceFlow id="Flow_1xcqykb" sourceRef="Activity_DeterminedMortgageScoreAndAmount" targetRef="Activity_FirstUnderWriterMaker" />
-    <bpmn:exclusiveGateway id="Gateway_FirstUWApproval" name="is first UW Approved">
+    <bpmn:exclusiveGateway id="Gateway_FirstUWApproval" name="is first uw approved?">
       <bpmn:incoming>Flow_0zk4ijh</bpmn:incoming>
       <bpmn:outgoing>Flow_0vanaxz</bpmn:outgoing>
       <bpmn:outgoing>Flow_1329rh7</bpmn:outgoing>
       <bpmn:outgoing>Flow_14aqhry</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_0vanaxz" sourceRef="Gateway_FirstUWApproval" targetRef="Activity_FirstUnderwriterRejected">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">isfirstUWApproved==false</bpmn:conditionExpression>
+    <bpmn:sequenceFlow id="Flow_0vanaxz" name="rejected" sourceRef="Gateway_FirstUWApproval" targetRef="Activity_FirstUnderwriterRejected">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${uw1Action=="Rejected"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:endEvent id="Event_FirstUWRejected" name="First Underwriter Rejection End">
       <bpmn:incoming>Flow_14rmau3</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_14rmau3" sourceRef="Activity_FirstUnderwriterRejected" targetRef="Event_FirstUWRejected" />
-    <bpmn:sequenceFlow id="Flow_1329rh7" sourceRef="Gateway_FirstUWApproval" targetRef="Activity_SecondUnderWriterCheck">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">isfirstUWApproved==true</bpmn:conditionExpression>
+    <bpmn:sequenceFlow id="Flow_1329rh7" name="approved" sourceRef="Gateway_FirstUWApproval" targetRef="Activity_SecondUnderWriterCheck">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${uw1Action=="Approved"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:exclusiveGateway id="Gateway_SecondUWApproval" name="is Second UW Approved">
+    <bpmn:exclusiveGateway id="Gateway_SecondUWApproval" name="is second uw approved?">
       <bpmn:incoming>Flow_1e78bn0</bpmn:incoming>
       <bpmn:outgoing>Flow_1k404wx</bpmn:outgoing>
       <bpmn:outgoing>Flow_1hbyn26</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0jru50e</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_1e78bn0" sourceRef="Activity_SecondUnderWriterCheck" targetRef="Gateway_SecondUWApproval" />
-    <bpmn:sequenceFlow id="Flow_1k404wx" sourceRef="Gateway_SecondUWApproval" targetRef="Activity_SecondUnderWriterRejected">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">isSecondUWApproved==false</bpmn:conditionExpression>
+    <bpmn:sequenceFlow id="Flow_1k404wx" name="rejected" sourceRef="Gateway_SecondUWApproval" targetRef="Activity_SecondUnderWriterRejected">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${uw2Action=="Rejected"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:endEvent id="Event_SecondUWRejected" name="Second Underwriter Rejection End">
       <bpmn:incoming>Flow_1fab5rn</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1fab5rn" sourceRef="Activity_SecondUnderWriterRejected" targetRef="Event_SecondUWRejected" />
-    <bpmn:sequenceFlow id="Flow_1hbyn26" sourceRef="Gateway_SecondUWApproval" targetRef="Activity_MortgagePayment">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">isSecondUWApproved==true</bpmn:conditionExpression>
+    <bpmn:sequenceFlow id="Flow_1hbyn26" name="approved" sourceRef="Gateway_SecondUWApproval" targetRef="Activity_MortgagePayment">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${uw2Action=="Approved"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:endEvent id="EndEvent_EndMortgageProcess" name="End Mortgage Process">
       <bpmn:incoming>Flow_0i8q12m</bpmn:incoming>
@@ -148,22 +154,25 @@
       <bpmn:incoming>Flow_0vanaxz</bpmn:incoming>
       <bpmn:outgoing>Flow_14rmau3</bpmn:outgoing>
     </bpmn:manualTask>
-    <bpmn:sequenceFlow id="Flow_14aqhry" sourceRef="Gateway_FirstUWApproval" targetRef="Gateway_ReverificationRequested" />
-    <bpmn:userTask id="Activity_FirstUnderWriterMaker" name="First Underwritter(Maker)" camunda:formKey="embedded:/forms/mortgagereview-form.html" camunda:assignee="fuw">
+    <bpmn:sequenceFlow id="Flow_14aqhry" name="Send for review" sourceRef="Gateway_FirstUWApproval" targetRef="Gateway_ReverificationRequested">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${uw1Action=="Send for review"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:userTask id="Activity_FirstUnderWriterMaker" name="Review by first underwriter(Maker)" camunda:formKey="embedded:/forms/mortgagereview-form.html">
       <bpmn:extensionElements>
         <camunda:taskListener class="com.ibm.camunda.usecase.mortgage.underwriting.listener.FUWTaskListener" event="complete" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1xcqykb</bpmn:incoming>
+      <bpmn:incoming>Flow_0jru50e</bpmn:incoming>
       <bpmn:outgoing>Flow_0zk4ijh</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_SecondUnderWriterCheck" name="Second Underwriter(Checker)" camunda:formKey="embedded:/forms/mortgageuw-form.html" camunda:candidateUsers="suw,uw1,fuw">
+    <bpmn:userTask id="Activity_SecondUnderWriterCheck" name="Review by second underwriter(Checker)" camunda:formKey="embedded:/forms/mortgagereview-form.html">
       <bpmn:extensionElements>
-        <camunda:taskListener class="com.ibm.camunda.usecase.mortgage.underwriting.listener.SUWTaskListener" event="create" />
+        <camunda:taskListener class="com.ibm.camunda.usecase.mortgage.underwriting.listener.SUWTaskListener" event="complete" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1329rh7</bpmn:incoming>
       <bpmn:outgoing>Flow_1e78bn0</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:serviceTask id="Activity_CheckedDuplicate" name="Save borrower" camunda:asyncBefore="true" camunda:delegateExpression="${saveBorrower}">
+    <bpmn:serviceTask id="Activity_CheckedDuplicate" name="Check duplicate and save borrower" camunda:asyncBefore="true" camunda:delegateExpression="${saveBorrower}">
       <bpmn:extensionElements />
       <bpmn:incoming>Flow_0bksqjb</bpmn:incoming>
       <bpmn:incoming>Flow_0canc6n</bpmn:incoming>
@@ -174,13 +183,16 @@
       <bpmn:errorEventDefinition id="ErrorEventDefinition_0upuedg" camunda:errorMessageVariable="errorMessage" />
     </bpmn:boundaryEvent>
     <bpmn:sequenceFlow id="Flow_1d2m6u2" sourceRef="Event_1bm2de2" targetRef="Activity_SaveDetailForDuplicate" />
-    <bpmn:scriptTask id="Activity_SaveDetailForDuplicate" name="Send Mail notification for Reject duplicate case " scriptFormat="javascript">
+    <bpmn:scriptTask id="Activity_SaveDetailForDuplicate" name="Send mail notification for reject duplicate case" scriptFormat="javascript">
       <bpmn:incoming>Flow_1d2m6u2</bpmn:incoming>
       <bpmn:outgoing>Flow_1hx4kjj</bpmn:outgoing>
       <bpmn:script>print("Duplicate Case detected")</bpmn:script>
     </bpmn:scriptTask>
     <bpmn:sequenceFlow id="Flow_0fdlf7d" sourceRef="Gateway_ReverificationRequested" targetRef="Activity_1aam2do" />
     <bpmn:sequenceFlow id="Flow_0zk4ijh" sourceRef="Activity_FirstUnderWriterMaker" targetRef="Gateway_FirstUWApproval" />
+    <bpmn:sequenceFlow id="Flow_0jru50e" name="Send to first uw" sourceRef="Gateway_SecondUWApproval" targetRef="Activity_FirstUnderWriterMaker">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${uw2Action=="Send for review"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
   </bpmn:process>
   <bpmn:message id="Message_1trhc4b" name="Message_CreditReportDetails" />
   <bpmn:message id="Message_2be27o8" name="Message_AppraisalReports" />
@@ -192,13 +204,13 @@
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_StartMortgageUnderwritingFromtasklist">
         <dc:Bounds x="179" y="379" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="158" y="422" width="79" height="40" />
+          <dc:Bounds x="160" y="422" width="76" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0sfch5q_di" bpmnElement="EventStart_MortgageProcessFromMesssage">
         <dc:Bounds x="179" y="252" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="157" y="295" width="83" height="27" />
+          <dc:Bounds x="160" y="295" width="77" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1v5d9ba_di" bpmnElement="Event_DuplicateCaseEnd">
@@ -207,8 +219,62 @@
           <dc:Bounds x="612" y="175" width="76" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0oerj64_di" bpmnElement="Gateway_FirstUWApproval" isMarkerVisible="true">
+        <dc:Bounds x="2215" y="395" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2215" y="455" width="52" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_08rfof9_di" bpmnElement="Event_FirstUWRejected">
+        <dc:Bounds x="2222" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2198" y="125" width="83" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0rpcmtc_di" bpmnElement="Gateway_SecondUWApproval" isMarkerVisible="true">
+        <dc:Bounds x="2495" y="395" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2487" y="445" width="65" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1gwdn32_di" bpmnElement="Event_SecondUWRejected">
+        <dc:Bounds x="2502" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2485" y="112" width="69" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0hdxaub_di" bpmnElement="EndEvent_EndMortgageProcess">
+        <dc:Bounds x="2782" y="402" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2765" y="445" width="70" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_04mwa5k_di" bpmnElement="Activity_MortgagePayment">
+        <dc:Bounds x="2610" y="380" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1eql2ng_di" bpmnElement="Activity_SecondUnderWriterRejected">
+        <dc:Bounds x="2470" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_17zxwl8_di" bpmnElement="Activity_FirstUnderwriterRejected">
+        <dc:Bounds x="2190" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ik6vw8_di" bpmnElement="Activity_SecondUnderWriterCheck">
+        <dc:Bounds x="2340" y="380" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1rx0os8_di" bpmnElement="Activity_FirstUnderWriterMaker">
+        <dc:Bounds x="1957" y="380" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1gyvh35_di" bpmnElement="Activity_DeterminedMortgageScoreAndAmount">
+        <dc:Bounds x="1809" y="380" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1aam2do_di" bpmnElement="Activity_1aam2do" isExpanded="true">
-        <dc:Bounds x="900" y="140" width="750" height="530" />
+        <dc:Bounds x="900" y="140" width="840" height="530" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1qry8hd_di" bpmnElement="Event_PullingDataStarted">
@@ -219,15 +285,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_04dmfag_di" bpmnElement="Gateway_ConvergedAllRequests">
         <dc:Bounds x="1435" y="372" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1qw1b4g_di" bpmnElement="Event_PullingDataEnded">
-        <dc:Bounds x="1562" y="379" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1s6kfd8_di" bpmnElement="Activity_CreditReports">
-        <dc:Bounds x="1170" y="290" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_02eamnz_di" bpmnElement="Activity_PropertyAppraisal">
-        <dc:Bounds x="1170" y="420" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_09xxz02_di" bpmnElement="Event_WaitForCreditReport">
         <dc:Bounds x="1342" y="312" width="36" height="36" />
@@ -249,9 +306,25 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_00oyyfn_di" bpmnElement="Activity_TitleReports">
         <dc:Bounds x="1170" y="550" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0vsnocz_di" bpmnElement="Activity_FloodZoneDetermining">
         <dc:Bounds x="1170" y="180" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0f91q74_di" bpmnElement="Activity_CreditReports">
+        <dc:Bounds x="1170" y="290" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_18utiag_di" bpmnElement="Activity_PropertyAppraisal">
+        <dc:Bounds x="1170" y="420" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1qw1b4g_di" bpmnElement="Event_PullingDataEnded">
+        <dc:Bounds x="1683" y="379" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_087wlho_di" bpmnElement="Activity_167wpi8">
+        <dc:Bounds x="1530" y="357" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0e5tnir_di" bpmnElement="Flow_0e5tnir">
         <di:waypoint x="976" y="397" />
@@ -311,65 +384,17 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_19ztmbn_di" bpmnElement="Flow_19ztmbn">
         <di:waypoint x="1485" y="397" />
-        <di:waypoint x="1562" y="397" />
+        <di:waypoint x="1530" y="397" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0iblspd_di" bpmnElement="Flow_0iblspd">
+        <di:waypoint x="1630" y="397" />
+        <di:waypoint x="1683" y="397" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Gateway_1rw7h0c_di" bpmnElement="Gateway_ReverificationRequested" isMarkerVisible="true">
         <dc:Bounds x="715" y="372" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="705" y="342" width="75" height="40" />
+          <dc:Bounds x="702" y="432" width="75" height="40" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1gyvh35_di" bpmnElement="Activity_DeterminedMortgageScoreAndAmount">
-        <dc:Bounds x="1670" y="380" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0oerj64_di" bpmnElement="Gateway_FirstUWApproval" isMarkerVisible="true">
-        <dc:Bounds x="2115" y="395" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2115" y="455" width="51" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_08rfof9_di" bpmnElement="Event_FirstUWRejected">
-        <dc:Bounds x="2122" y="162" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2098" y="125" width="83" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0rpcmtc_di" bpmnElement="Gateway_SecondUWApproval" isMarkerVisible="true">
-        <dc:Bounds x="2395" y="395" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2387" y="452" width="71" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1gwdn32_di" bpmnElement="Event_SecondUWRejected">
-        <dc:Bounds x="2402" y="162" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2385" y="112" width="69" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0hdxaub_di" bpmnElement="EndEvent_EndMortgageProcess">
-        <dc:Bounds x="2682" y="402" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2665" y="445" width="70" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_04mwa5k_di" bpmnElement="Activity_MortgagePayment">
-        <dc:Bounds x="2510" y="380" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1eql2ng_di" bpmnElement="Activity_SecondUnderWriterRejected">
-        <dc:Bounds x="2370" y="240" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_17zxwl8_di" bpmnElement="Activity_FirstUnderwriterRejected">
-        <dc:Bounds x="2090" y="240" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1rx0os8_di" bpmnElement="Activity_FirstUnderWriterMaker">
-        <dc:Bounds x="1910" y="380" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0ik6vw8_di" bpmnElement="Activity_SecondUnderWriterCheck">
-        <dc:Bounds x="2240" y="380" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_09rdmtg_di" bpmnElement="Activity_CheckedDuplicate">
         <dc:Bounds x="430" y="357" width="100" height="80" />
@@ -400,50 +425,66 @@
         <di:waypoint x="632" y="230" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0sfjiya_di" bpmnElement="Flow_0sfjiya">
-        <di:waypoint x="1650" y="420" />
-        <di:waypoint x="1670" y="420" />
+        <di:waypoint x="1740" y="420" />
+        <di:waypoint x="1809" y="420" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1xcqykb_di" bpmnElement="Flow_1xcqykb">
-        <di:waypoint x="1770" y="420" />
-        <di:waypoint x="1910" y="420" />
+        <di:waypoint x="1909" y="420" />
+        <di:waypoint x="1957" y="420" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0vanaxz_di" bpmnElement="Flow_0vanaxz">
-        <di:waypoint x="2140" y="395" />
-        <di:waypoint x="2140" y="320" />
+        <di:waypoint x="2240" y="395" />
+        <di:waypoint x="2240" y="320" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2190" y="355" width="40" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_14rmau3_di" bpmnElement="Flow_14rmau3">
-        <di:waypoint x="2140" y="240" />
-        <di:waypoint x="2140" y="198" />
+        <di:waypoint x="2240" y="240" />
+        <di:waypoint x="2240" y="198" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1329rh7_di" bpmnElement="Flow_1329rh7">
-        <di:waypoint x="2165" y="420" />
-        <di:waypoint x="2240" y="420" />
+        <di:waypoint x="2265" y="420" />
+        <di:waypoint x="2340" y="420" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2280" y="402" width="46" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1e78bn0_di" bpmnElement="Flow_1e78bn0">
-        <di:waypoint x="2340" y="420" />
-        <di:waypoint x="2395" y="420" />
+        <di:waypoint x="2440" y="420" />
+        <di:waypoint x="2495" y="420" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1k404wx_di" bpmnElement="Flow_1k404wx">
-        <di:waypoint x="2420" y="395" />
-        <di:waypoint x="2420" y="320" />
+        <di:waypoint x="2520" y="395" />
+        <di:waypoint x="2520" y="320" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2480" y="350" width="40" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1fab5rn_di" bpmnElement="Flow_1fab5rn">
-        <di:waypoint x="2420" y="240" />
-        <di:waypoint x="2420" y="198" />
+        <di:waypoint x="2520" y="240" />
+        <di:waypoint x="2520" y="198" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1hbyn26_di" bpmnElement="Flow_1hbyn26">
-        <di:waypoint x="2445" y="420" />
-        <di:waypoint x="2510" y="420" />
+        <di:waypoint x="2545" y="420" />
+        <di:waypoint x="2610" y="420" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2555" y="402" width="46" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0i8q12m_di" bpmnElement="Flow_0i8q12m">
-        <di:waypoint x="2610" y="420" />
-        <di:waypoint x="2682" y="420" />
+        <di:waypoint x="2710" y="420" />
+        <di:waypoint x="2782" y="420" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_14aqhry_di" bpmnElement="Flow_14aqhry">
-        <di:waypoint x="2140" y="445" />
-        <di:waypoint x="2140" y="710" />
-        <di:waypoint x="740" y="710" />
-        <di:waypoint x="740" y="422" />
+        <di:waypoint x="2215" y="420" />
+        <di:waypoint x="2130" y="420" />
+        <di:waypoint x="2130" y="70" />
+        <di:waypoint x="740" y="70" />
+        <di:waypoint x="740" y="372" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2051" y="213" width="78" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1d2m6u2_di" bpmnElement="Flow_1d2m6u2">
         <di:waypoint x="500" y="339" />
@@ -454,8 +495,17 @@
         <di:waypoint x="900" y="397" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0zk4ijh_di" bpmnElement="Flow_0zk4ijh">
-        <di:waypoint x="2010" y="420" />
-        <di:waypoint x="2115" y="420" />
+        <di:waypoint x="2057" y="420" />
+        <di:waypoint x="2215" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jru50e_di" bpmnElement="Flow_0jru50e">
+        <di:waypoint x="2520" y="445" />
+        <di:waypoint x="2520" y="530" />
+        <di:waypoint x="2007" y="530" />
+        <di:waypoint x="2007" y="460" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2225" y="512" width="77" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

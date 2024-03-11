@@ -6,8 +6,6 @@ package com.ibm.camunda.usecase.mortgage.underwriting.model;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -27,8 +25,6 @@ import lombok.Setter;
 @Table(name = "Borrower")
 public class Borrower {
 	    @Id
-	   // @GeneratedValue(strategy = GenerationType.AUTO)
-
 	    public Integer caseNo;
 	    public String borrowerType;
 	    public String name;
@@ -68,5 +64,17 @@ public class Borrower {
 		public long nBed;
 		public long nBath;
 		public long lotSize;	
+		public String uw1Comment;
+		public String uw1Action;
+		public Date uw1ActionDate;
+		public String uw1Name;
+		public String uw2Comment;
+		public String uw2Action;
+		public String uw2Name;
+		public Date uw2ActionDate;
+		public String caseStatus;
+		public long mortgageLiens;
+		public long propTaxes;
+		public String propAppraisal;
 
 }
