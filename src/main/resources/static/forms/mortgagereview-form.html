@@ -1,7 +1,7 @@
 <!--
 You can use this form through Camunda Tasklist
 by setting the formKey of a BPMN User Task to:
-embedded:/forms/mortgageentry-form.html
+embedded:/forms/mortgagereview-form.html
 -->
 <!DOCTYPE html>
 <html>
@@ -204,15 +204,15 @@ embedded:/forms/mortgageentry-form.html
         <div class="colums">
           <div class="item">
             <label for="name">Name<span>*</span></label>
-            <input id="name" type="text" name="name" cam-variable-name="name" cam-variable-type="String" />
+            <input readonly="true" id="name" type="text" name="name" cam-variable-name="name" cam-variable-type="String" />
           </div>
           <div class="item">
             <label for="dob">Date of Birth<span>*</span></label>
-            <input id="dob" type="date" name="dob" cam-variable-name="dob" cam-variable-type="String"/>
+            <input readonly="true" id="dob" type="date" name="dob" cam-variable-name="dob" cam-variable-type="String"/>
           </div>
           <div class="item">
             <label for="pan">Pan No<span>*</span></label>
-            <input id="pan" type="text"   name="pan" cam-variable-name="panNo" cam-variable-type="String"/>
+            <input readonly="true" id="pan" type="text"   name="pan" cam-variable-name="panNo" cam-variable-type="String"/>
           </div>    
        </fieldset>
         
@@ -223,62 +223,58 @@ embedded:/forms/mortgageentry-form.html
         <div class="colums">
           <div class="item">
             <label for="address1">Address 1<span>*</span></label>
-            <input id="address1" type="text" name="address1" cam-variable-name="address1" cam-variable-type="String" />
+            <input readonly="true" id="address1" type="text" name="address1" cam-variable-name="address1" cam-variable-type="String" />
           </div>
           <div class="item">
             <label for="address2">Address 2<span>*</span></label>
-            <input id="address2" type="text" name="address2" cam-variable-name="address2" cam-variable-type="String" />
+            <input readonly="true" id="address2" type="text" name="address2" cam-variable-name="address2" cam-variable-type="String" />
           </div>
           <div class="item">
             <label for="country">Country<span>*</span></label>
-            <!-- <input id="country" type="text"   name="country" cam-variable-name="country" cam-variable-type="String"/> -->
-            <select id=country cam-variable-name="country" cam-variable-type="String">
+            <!-- <input readonly="true" id="country" type="text"   name="country" cam-variable-name="country" cam-variable-type="String"/> -->
+            <select readonly="true" id=country cam-variable-name="country" cam-variable-type="String">
           	<option value=""></option>
-              <option value="IN">India</option>
-              <option value="SA">South Africa</option>
-              <option value="AUS">Australia</option>
+          	<option value="IN">India</option>
+          	<option value="SA">South Africa</option>
+          	<option value="AUS">Australia</option>
         	</select> 
           </div>
           <div class="item">
             <label for="state">State<span>*</span></label>
-            <!--             <input readonly="true" id="state" type="text"   name="state" cam-variable-name="state" cam-variable-type="String" />-->
-            <select id="state" cam-variable-name="state" cam-variable-type="String">
-              <option value=""></option>
-              <option value="KL">Kerala</option>
-              <option value="WB">West Bengal</option>
-              <option value="GJ">Gujarat</option>
-              <option value="KT">Karnataka</option>
+<!--             <input readonly="true" id="state" type="text"   name="state" cam-variable-name="state" cam-variable-type="String" />-->
+            <select readonly="true" id=state cam-variable-name="state" cam-variable-type="String">
+          	<option value=""></option>
+          	<option value="KL">Kerala</option>
+          	<option value="WB">West Bengal</option>
+          	<option value="GJ">Gujarat</option>
+            <option value="KT">Karnataka</option>
             </select>
-
-          </div>
+ 
+ 		  </div>
           <div class="item">
             <label for="city">City<span>*</span></label>
             <!--             <input readonly="true" id="state" type="text"   name="state" cam-variable-name="state" cam-variable-type="String" />-->
-            <select readonly="true" id="city" cam-variable-name="city" cam-variable-type="String">
+            <select readonly="true" id=city cam-variable-name="city" cam-variable-type="String">
               <option value=""></option>
               <option value="BGL">Bengaluru</option>
               <option value="KOL">Kolkata</option>
-              <option value="GDH">Gandhinagar</option>
+              <option value="GJ">Gandhinagar</option>
               <option value="TH">Thiruvananthapuram</option>
-              <option value="MAL">Malappuram</option>
-              <option value="SUR">Surat</option>
-              <option value="TH">Thrissur</option>
-
             </select>
 
           </div>
 
           <div class="item">
             <label for="pin">Pin<span>*</span></label>
-            <input id="pin" type="text"   name="pin" cam-variable-name="pin" cam-variable-type="Long"/>
+            <input readonly="true" id="pin" type="text"   name="pin" cam-variable-name="pin" cam-variable-type="Long"/>
           </div>  
           <div class="item">
             <label for="phoneNumber">Phone Number<span>*</span></label>
-            <input id="phoneNumber" type="text"   name="phoneNumber" cam-variable-name="phoneNumber" cam-variable-type="Long"/>
+            <input readonly="true" id="phoneNumber" type="text"   name="phoneNumber" cam-variable-name="phoneNumber" cam-variable-type="Long"/>
           </div>
           <div class="item">
             <label for="email">Email<span>*</span></label>
-            <input id="email" type="text"   name="email" cam-variable-name="email" cam-variable-type="String"/>
+            <input readonly="true" id="email" type="text"   name="email" cam-variable-name="email" cam-variable-type="String"/>
           </div>      
        </fieldset>
        <br/>  
@@ -287,20 +283,20 @@ embedded:/forms/mortgageentry-form.html
         <legend>Employee History</legend>
         <div class="colums">
           <div class="item">
-            <label for="employerName">Employer Name</label>
-            <input id="employerName" type="text" name="employerName" cam-variable-name="employerName" cam-variable-type="String"/>
+            <label for="employerName">Employer Name<span>*</span></label>
+            <input readonly="true" id="employerName" type="text" name="employerName" cam-variable-name="employerName" cam-variable-type="String"/>
           </div>
           <div class="item">
-            <label for="empStart">Employment Start Date</label>
-            <input id="empStart" type="date" name="empStart" cam-variable-name="empStart" cam-variable-type="String"/>
+            <label for="empStart">Employment Start Date<span>*</span></label>
+            <input readonly="true" id="empStart" type="date" name="empStart" cam-variable-name="empStart" cam-variable-type="String"/>
           </div>
           <div class="item">
-            <label for="empEnd">Employment End date</label>
-            <input id="empEnd" type="date"   name="empEnd" cam-variable-name="empEnd" cam-variable-type="String"/>
+            <label for="empEnd">Employment End date<span>*</span></label>
+            <input readonly="true" id="empEnd" type="date"   name="empEnd" cam-variable-name="empEnd" cam-variable-type="String"/>
           </div> 
           <div class="item">
             <label for="income">Income<span>*</span></label>
-            <input id="income" type="text"   name="income" cam-variable-name="income" cam-variable-type="Long" />
+            <input readonly="true" id="income" type="text"   name="income" cam-variable-name="income" cam-variable-type="Long" />
           </div>    
        </fieldset>
        <br/> 
@@ -309,16 +305,16 @@ embedded:/forms/mortgageentry-form.html
         <legend>Financial Details</legend>
         <div class="colums">
           <div class="item">
-            <label for="assets">Assets</label>
-            <input id="assets" type="text" name="assets" cam-variable-name="assets" cam-variable-type="String" />
+            <label for="assets">Assets<span>*</span></label>
+            <input readonly="true" id="assets" type="text" name="assets" cam-variable-name="assets" cam-variable-type="String" />
           </div>
           <div class="item">
-            <label for="liabilities">Liabilities</label>
-            <input id="liabilities" type="text" name="liabilities" cam-variable-name="liabilities" cam-variable-type="String"/>
+            <label for="liabilities">Liabilities<span>*</span></label>
+            <input readonly="true" id="liabilities" type="text" name="liabilities" cam-variable-name="liabilities" cam-variable-type="String"/>
           </div>
           <div class="item">
-            <label for="debt">Debts</label>
-            <input id="debt" type="text"   name="debt" cam-variable-name="debt" cam-variable-type="Long"/>
+            <label for="debt">Debts<span>*</span></label>
+            <input readonly="true" id="debt" type="text"   name="debt" cam-variable-name="debt" cam-variable-type="Long"/>
           </div>    
        </fieldset>
        <br/> 
@@ -328,44 +324,46 @@ embedded:/forms/mortgageentry-form.html
         <div class="colums">
           <div class="item">
             <label for="credScore">Credit Score<span>*</span></label>
-            <input id="credScore" type="number" name="credScore" cam-variable-name="credScore" cam-variable-type="number"/>
+            <input readonly="true" id="credScore" type="number" name="credScore" cam-variable-name="credScore" cam-variable-type="number"/>
           </div>
           <div class="item">
             <label for="credReport">Credit Report<span>*</span></label>
-            <input id="credReport" type="text"   name="credReport" cam-variable-name="credReport" cam-variable-type="String"/>
+            <input readonly="true" id="credReport" type="text"   name="credReport" cam-variable-name="credReport" cam-variable-type="String"/>
           </div>    
        </fieldset>
        <br/> !-->
 
+									  
 		<fieldset>
         <legend>Property Details</legend>
         <div class="colums">
           <div class="item">
             <label for="propValue">Property Value<span>*</span></label>
-            <input id="propValue" type="text"   name="propValue" cam-variable-name="propValue" cam-variable-type="Long" />
+            <input readonly="true" id="propValue" type="text"   name="propValue" cam-variable-name="propValue" cam-variable-type="Long" />
           </div>    
           <div class="item">
             <label for="propType">Property Type<span>*</span></label>
-            <input id="propType" type="text" name="propType" cam-variable-name="propType" cam-variable-type="String"/>
+            <input readonly="true" id="propType" type="text" name="propType" cam-variable-name="propType" cam-variable-type="Long"/>
           </div>
           <div class="item">
             <label for="propArea">Property Area<span>*</span></label>
-            <input id="propArea" type="text" name="propArea" cam-variable-name="propArea" cam-variable-type="Long"/>
+            <input readonly="true" id="propArea" type="text" name="propArea" cam-variable-name="propArea" cam-variable-type="Long"/>
           </div>
           <div class="item">
-            <label for="nBed">No of Bedrooms</label>
-            <input id="nBed" type="text"   name="nBed" cam-variable-name="nBed" cam-variable-type="Long"/>
+            <label for="nBed">No of Bedrooms<span>*</span></label>
+            <input readonly="true" id="nBed" type="text"   name="nBed" cam-variable-name="nBed" cam-variable-type="Long"/>
           </div>    
           <div class="item">
-            <label for="nBath">No of Bathrooms</label>
-            <input id="nBath" type="text"   name="nBath" cam-variable-name="nBath" cam-variable-type="Long"/>
+            <label for="nBath">No of Bathrooms<span>*</span></label>
+            <input readonly="true" id="nBath" type="text"   name="nBath" cam-variable-name="nBath" cam-variable-type="Long"/>
           </div>  
           <div class="item">
-            <label for="lotSize">Lot Size</label>
-            <input id="lotSize" type="text"   name="lotSize" cam-variable-name="lotSize" cam-variable-type="Long"/>
+            <label for="lotSize">Lot Size<span>*</span></label>
+            <input readonly="true" id="lotSize" type="text"   name="lotSize" cam-variable-name="lotSize" cam-variable-type="Long"/>
           </div>   
        </fieldset>
        <br/> 
+	  
 
 
 		<fieldset>
@@ -373,34 +371,24 @@ embedded:/forms/mortgageentry-form.html
         <div class="colums">
           <div class="item">
             <label for="loanAmount">Loan Amount<span>*</span></label>
-            <input id="loanAmount" type="text"   name="loanAmount" cam-variable-name="loanAmount" cam-variable-type="Long" />
-          </div>
-
+            <input readonly="true" id="loanAmount" type="text"   name="loanAmount" cam-variable-name="loanAmount" cam-variable-type="Long" />
+          </div>    
           <div class="item">
             <label for="loanTerm">Loan Term<span>*</span></label>
-            <!--             <input readonly="true" id="state" type="text"   name="state" cam-variable-name="state" cam-variable-type="String" />-->
-            <select readonly="true" id="loanTerm" cam-variable-name="loanTerm" cam-variable-type="String">
-              <option value=""></option>
-              <option value="2">2</option>
-              <option value="4">4</option>
-              <option value="8">8</option>
-              </select>
+            <input readonly="true" id="loanTerm" type="text" name="loanTerm" cam-variable-name="loanTerm" cam-variable-type="String"/>
           </div>
-
-
-
           <div class="item">
-            <label for="intRate">Interest Rate</label>
-            <input id="intRate" type="text" name="intRate" cam-variable-name="intRate" cam-variable-type="Long"/>
+            <label for="intRate">Interest Rate<span>*</span></label>
+            <input readonly="true" id="intRate" type="text" name="intRate" cam-variable-name="intRate" cam-variable-type="Long"/>
           </div>
           <div class="item">
             <label for="dpAmount">Down Payment Amount<span>*</span></label>
-            <input id="dpAmount" type="text"   name="dpAmount" cam-variable-name="dpAmount" cam-variable-type="Long"/>
+            <input readonly="true" id="dpAmount" type="text"   name="dpAmount" cam-variable-name="dpAmount" cam-variable-type="Long"/>
           </div>    
           <div class="item">
             <label for="loanPurp">Loan Purpose<span>*</span></label>
-            <!-- <input id="loanPurp" type="text"   name="loanPurp" cam-variable-name="loanPurp" cam-variable-type="String" /> -->
-            <select id=loanPurp cam-variable-name="loanPurp" cam-variable-type="String">
+            <!-- <input readonly="true" id="loanPurp" type="text"   name="loanPurp" cam-variable-name="loanPurp" cam-variable-type="String" /> -->
+            <select readonly="true" id=loanPurp cam-variable-name="loanPurp" cam-variable-type="String">
           	<option value=""></option>
           	<option value="Purchase">Purchase</option>
           	<option value="Refinance">Refinance</option>
@@ -408,8 +396,8 @@ embedded:/forms/mortgageentry-form.html
           </div>  
           <div class="item">
             <label for="loanPrg">Loan Programme<span>*</span></label>
-            <!-- <input id="loanPrg" type="text"   name="loanPrg" cam-variable-name="loanPrg" cam-variable-type="String"/> -->
-            <select id=loanPrg cam-variable-name="loanPrg" cam-variable-type="String">
+            <!-- <input readonly="true" id="loanPrg" type="text"   name="loanPrg" cam-variable-name="loanPrg" cam-variable-type="String"/> -->
+            <select readonly="true" id=loanPrg cam-variable-name="loanPrg" cam-variable-type="String">
           	<option value=""></option>
           	<option value="Conventional">Conventional</option>
           	<option value="FHA">FHA</option>
@@ -421,56 +409,94 @@ embedded:/forms/mortgageentry-form.html
 
 
 
-<!-- 		<fieldset>
+		<fieldset>
         <legend>Credit Risk Assessment</legend>
         <div class="colums">
           <div class="item">
             <label for="creditScore">Credit Score<span>*</span></label>
-            <input id="creditScore" type="text"   name="creditScore" cam-variable-name="creditScore" cam-variable-type="Long"/>
+            <input readonly="true" id="creditScore" type="text"   name="creditScore" cam-variable-name="creditScore" cam-variable-type="Long"/>
           </div>    
           <div class="item">
             <label for="dti">Debt-to-Income-Ratio<span>*</span></label>
-            <input id="dti" type="text" name="dti" cam-variable-name="dti" cam-variable-type="Long" />
+            <input readonly="true" id="dti" type="text" name="dti" cam-variable-name="dti" cam-variable-type="Long" />
           </div>
           <div class="item">
             <label for="ltv">Loan-to-Value-Ratio<span>*</span></label>
-            <input id="ltv" type="text" name="ltv" cam-variable-name="ltv" cam-variable-type="Long" />
+            <input readonly="true" id="ltv" type="text" name="ltv" cam-variable-name="ltv" cam-variable-type="Long" />
           </div>
           <div class="item">
             <label for="empStab">Employment Stability<span>*</span></label>
-            <input id="empStab" type="text"   name="empStab" cam-variable-name="empStab" cam-variable-type="String" />
+            <input readonly="true" id="empStab" type="text"   name="empStab" cam-variable-name="empStab" cam-variable-type="String" />
           </div>    
           <div class="item">
             <label for="payHist">Payment History<span>*</span></label>
-            <input id="payHist" type="text"   name="payHist" cam-variable-name="payHist" cam-variable-type="String"/>
+            <input readonly="true" id="payHist" type="text"   name="payHist" cam-variable-name="payHist" cam-variable-type="String"/>
           </div>  
           <div class="item">
             <label for="credReport">Credit Report<span>*</span></label>
-            <input id="credReport" type="text"   name="credReport" cam-variable-name="credReport" cam-variable-type="String"/>
+            <input readonly="true" id="credReport" type="text"   name="credReport" cam-variable-name="credReport" cam-variable-type="String"/>
           </div> 
        </fieldset>
-       <br/> 
-
-		<br/> -->
-<!-- 		<fieldset>
+		<br/>
+		<fieldset>
         <legend>Underwriter Decision</legend>
         <div class="colums">
           <div class="item">
         	<label for="decision">Decision<span>*</span></label>
         	<select id=decision cam-variable-name="decision" cam-variable-type="String">
           	<option value=""></option>
-          	<option value="">Approve</option>
-          	<option value="2">Reject</option>
-          	<option value="3">Suspend</option>
+          	<option value="Approved">Approved</option>
+          	<option value="Rejected">Rejected</option>
+          	<option value="Send for review">Send for review</option>
         	</select>
           </div>
           <div class="item">
             <label for="note">Notes<span>*</span></label>
             <input id="note" type="text" name="note" cam-variable-name="note" cam-variable-type="String"/>
-          </div>    
+          </div>              
+          
        </fieldset>
         
-		<br/> -->
+		<br/>
+
+<fieldset>		
+<legend>Audit Trail</legend>		
+<table style="width:100%">
+  <tr>
+    <th>Action</th>
+    <th>Comments</th>
+    <th>Owner</th>
+    <th>Date</th>
+  </tr>
+  <tr>
+    <td><input id="uw1Action" type="text" name="uw1Action" cam-variable-name="uw1Action" cam-variable-type="String"/></td>
+    <td><input id="uw1Comment" type="text" name="uw1Comment" cam-variable-name="uw1Comment" cam-variable-type="String"/></td>
+    <td><input id="uw1Name" type="text" name="uw1Name" cam-variable-name="uw1Name" cam-variable-type="String"/></td>
+    <td><input id="uw1ActionDate" type="text" name="uw1ActionDate" cam-variable-name="uw1ActionDate" cam-variable-type="String"/></td>
+  </tr>
+  <tr>
+    <td><input id="uw2Action" type="text" name="uw2Action" cam-variable-name="uw2Action" cam-variable-type="String"/></td>
+    <td><input id="uw2Comment" type="text" name="uw2Comment" cam-variable-name="uw2Comment" cam-variable-type="String"/></td>
+    <td><input id="uw2Name" type="text" name="uw2Name" cam-variable-name="uw2Name" cam-variable-type="String"/></td>
+    <td><input id="uw2ActionDate" type="text" name="uw2ActionDate" cam-variable-name="uw2ActionDate" cam-variable-type="String"/></td>
+  </tr> 
+</table>
+
+			
+							  
+						  
+	  
+					 
+					 
+				  
+	   
+	  
+																																   
+																													   
+																																	  
+	   
+		
+
 		
 
 <script cam-script type="text/form-script">

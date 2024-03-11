@@ -67,6 +67,22 @@ public class Borrower {
 		public long propArea;
 		public long nBed;
 		public long nBath;
-		public long lotSize;	
+		public long lotSize;
+		public String uw1Comment;
+		public String uw1Action;
+		public Date uw1ActionDate;
+		public String uw1Name;
+		public String uw2Comment;
+		public String uw2Action;
+		public String uw2Name;
+		public Date uw2ActionDate;
+		public String caseStatus;
+		public long mortgageLiens;
+		public long propTaxes;
+		public String propAppraisal;
+		public String cancelReason;
+		public Date caseModifiedDate;
+		public String floodZone;
+
 
 }

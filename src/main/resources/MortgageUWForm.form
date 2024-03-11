@@ -22,7 +22,10 @@
         "columns": null
       },
       "id": "Field_1p4lkoj",
-      "key": "name"
+      "key": "name",
+      "validate": {
+        "required": true
+      }
     },
     {
       "label": "Date of Birth",
@@ -42,7 +45,11 @@
         "columns": null
       },
       "id": "Field_08asq52",
-      "key": "panNo"
+      "key": "panNo",
+      "validate": {
+        "required": true,
+        "minLength": 1
+      }
     },
     {
       "label": "",
@@ -96,7 +103,10 @@
         "columns": null
       },
       "id": "Field_0fpu199",
-      "key": "state"
+      "key": "state",
+      "validate": {
+        "required": false
+      }
     },
     {
       "label": "Country",
@@ -116,7 +126,13 @@
         "columns": null
       },
       "id": "Field_02gqrta",
-      "key": "pin"
+      "key": "pin",
+      "description": "Please enter Number",
+      "defaultValue": 3,
+      "validate": {
+        "min": 0,
+        "required": false
+      }
     },
     {
       "label": "Phone Number",
@@ -126,7 +142,8 @@
         "columns": null
       },
       "id": "Field_18gsi2n",
-      "key": "phoneNumber"
+      "key": "phoneNumber",
+      "description": "Please enter number"
     },
     {
       "label": "Email",
@@ -214,7 +231,10 @@
         "columns": null
       },
       "id": "Field_0hag07w",
-      "key": "liabilities"
+      "key": "liabilities",
+      "validate": {
+        "required": true
+      }
     },
     {
       "label": "Assets",
@@ -234,7 +254,10 @@
         "columns": null
       },
       "id": "Field_0v4aq5s",
-      "key": "debt"
+      "key": "debt",
+      "validate": {
+        "required": true
+      }
     },
     {
       "label": "",
@@ -304,8 +327,12 @@
     {
       "values": [
         {
-          "label": "Value",
-          "value": "value"
+          "label": "Flat",
+          "value": "Flat"
+        },
+        {
+          "label": "House",
+          "value": "House"
         }
       ],
       "label": "Property Type",
@@ -376,7 +403,10 @@
         "columns": null
       },
       "id": "Field_0bhm15l",
-      "key": "loanAmount"
+      "key": "loanAmount",
+      "validate": {
+        "required": true
+      }
     },
     {
       "label": "Loan Term",
@@ -411,8 +441,16 @@
     {
       "values": [
         {
-          "label": "Value",
-          "value": "value"
+          "label": "primary home",
+          "value": "primary"
+        },
+        {
+          "label": "Refinance",
+          "value": "refinance"
+        },
+        {
+          "label": "Home Equity",
+          "value": "Equity"
         }
       ],
       "label": "Loan Purpose",
@@ -427,8 +465,12 @@
     {
       "values": [
         {
-          "label": "Value",
-          "value": "value"
+          "label": "Conventional Mortgages",
+          "value": "Conventional"
+        },
+        {
+          "label": "Reverse Mortgage",
+          "value": "Reverse "
         }
       ],
       "label": "Loan Programme",
