@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_0c6miai" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.19.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.20.0">
+  <decision id="Decision_DetermineMortgageScore_Amount_Rate" name="Determine mortgage score and amount" camunda:historyTimeToLive="1000">
+    <decisionTable id="DecisionTable_0o8ofgi">
+      <input id="Input_1" label="Income">
+        <inputExpression id="InputExpression_1" typeRef="long">
+          <text>income</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1bjz4ac" label="Debt">
+        <inputExpression id="LiteralExpression_0cumb1o" typeRef="long">
+          <text>debt</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_11674w6" label="loanAmount">
+        <inputExpression id="LiteralExpression_0skxawt" typeRef="long">
+          <text>loanAmount</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1imcye7" label="loanTerm">
+        <inputExpression id="LiteralExpression_11gtovi" typeRef="string">
+          <text>loanTerm</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Interest Rate" name="intRate" typeRef="long" />
+      <rule id="DecisionRule_0srmpbx">
+        <inputEntry id="UnaryTests_1dnkqix">
+          <text>&lt;=1000000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0onj7nu">
+          <text>&lt;=5000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18x4ddb">
+          <text>&lt;=100000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1p85bzb">
+          <text>["2","4"]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_06cab9n">
+          <text>9</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ld3arc">
+        <inputEntry id="UnaryTests_1r6k3xo">
+          <text>[1000001,2000000]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0rouxs2">
+          <text>&lt;=500000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_110hbhy">
+          <text>&lt;=300000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1f4bw3u">
+          <text>["2","4"]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1vl8no9">
+          <text>10</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_DetermineMortgageScore_Amount_Rate">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

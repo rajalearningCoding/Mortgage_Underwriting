@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_108fb8w" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.19.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.20.0">
+  <decision id="Decision_FloodZone" name="Check FloodZone" camunda:historyTimeToLive="1000">
+    <decisionTable id="DecisionTable_1dnr06s">
+      <input id="InputClause_18sng8x" label="State">
+        <inputExpression id="LiteralExpression_1tngaxo" typeRef="string">
+          <text>state</text>
+        </inputExpression>
+      </input>
+      <input id="Input_1" label="city">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>city</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="floodZone" name="floodZone" typeRef="string" />
+      <rule id="DecisionRule_1frfahi">
+        <inputEntry id="UnaryTests_1a4koan">
+          <text>"KL"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gh6zk0">
+          <text>"MAL"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0xpcr38">
+          <text>"REDZone"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0o7u88o">
+        <inputEntry id="UnaryTests_1bee1zh">
+          <text>"KL"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1v6kaiq">
+          <text>"TH"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_18k4efc">
+          <text>"REDZone"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_00pd1e5">
+        <inputEntry id="UnaryTests_0k0cu4h">
+          <text>"WB"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mctd3w">
+          <text>"KOL"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0qstfuc">
+          <text>"YellowZone"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0m8qtj4">
+        <inputEntry id="UnaryTests_0dy6yjt">
+          <text>"GJ"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qvlv56">
+          <text>"GDH"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0erz9h3">
+          <text>"GreenZone"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_FloodZone">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

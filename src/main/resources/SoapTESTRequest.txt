@@ -1,0 +1,9 @@
+{
+"messageName" : "Message_TitleReports",
+"businessKey" : 1,
+"processVariables" : {
+"propertytaxes" : {"value" : 2344, "type": "Integer"},
+"Mortgageliens":{"value":12345,"type":"Integer"}
+
+}
+}
