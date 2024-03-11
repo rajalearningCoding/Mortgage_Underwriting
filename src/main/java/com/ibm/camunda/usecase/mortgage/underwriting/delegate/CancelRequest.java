@@ -41,14 +41,14 @@ public class CancelRequest implements JavaDelegate {
 	       	System.out.println("Cancel Request");
 		    String panNo = (String) execution.getVariable("panNo");
 		    System.out.println(panNo);//Printing panNo Value
-		    Borrower panNo1 = this.borrowerRepository.findByPanNo(panNo);
+		    Borrower user = this.borrowerRepository.findByPanNo(panNo);
 
-		        if(panNo1!=null)
+		        if(user!=null)
 		        {
-		        	panNo1.setCaseStatus(caseStatus);
-		        	panNo1.setCancelReason(cancelReason);
-		        	panNo1.setCaseModifiedDate(caseModifiedDate);
-		        	this.borrowerRepository.save(panNo1);
+		        	user.setCaseStatus(caseStatus);
+		        	user.setCancelReason(cancelReason);
+		        	user.setCaseModifiedDate(caseModifiedDate);
+		        	this.borrowerRepository.save(user);
 		        	
 		        	System.out.println("Request has been cancelled ");
 					
