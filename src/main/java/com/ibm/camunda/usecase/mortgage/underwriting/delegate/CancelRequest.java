@@ -37,7 +37,7 @@ public class CancelRequest implements JavaDelegate {
 		    String caseStatus=(String) execution.getVariable("caseStatus");
 		    String cancelReason=(String) execution.getVariable("cancelReason");
 		    Date caseModifiedDate=new Date();
-		    //SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-DD", Locale.ENGLISH);
+		   
 	       	System.out.println("Cancel Request");
 		    String panNo = (String) execution.getVariable("panNo");
 		    System.out.println(panNo);//Printing panNo Value
@@ -47,7 +47,6 @@ public class CancelRequest implements JavaDelegate {
 		        {
 		        	panNo1.setCaseStatus(caseStatus);
 		        	panNo1.setCancelReason(cancelReason);
-		        	//Date caseModifiedDate1 = formatter.parse(caseModifiedDate);
 		        	panNo1.setCaseModifiedDate(caseModifiedDate);
 		        	this.borrowerRepository.save(panNo1);
 		        	
